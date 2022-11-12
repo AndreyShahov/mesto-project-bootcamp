@@ -1,0 +1,6 @@
+.profile__add-button {
+  max-width: 22px;
+  width: 100%;
+  min-height: 22px;
+  background-image: url('../../../images/profile-plus.svg');
+  }

@@ -2,4 +2,5 @@
   width: calc(100% - 400px);
   min-height: 74px;
   box-sizing: border-box;
+  margin-bottom: 40px;
 }
