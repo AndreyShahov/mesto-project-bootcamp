@@ -3,4 +3,14 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 18px;
+  max-width: 336px;
+  width: 100%;
+}
+
+@media  screen and (max-width: 1048px) {
+  .profile__author-subline {
+    font-size: 14px;
+    line-height: 14px;
+    text-align: center;
+  }
 }
