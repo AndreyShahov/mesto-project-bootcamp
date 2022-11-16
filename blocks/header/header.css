@@ -9,7 +9,8 @@
 @media screen and (max-width: 580px) {
   .header {
     width: 100%;
-    margin-bottom: 28px;
-    margin-top: 45px;
+    min-height: 56px;
+    margin-bottom: 42px;
+    margin-top: 28px;
   }
 }

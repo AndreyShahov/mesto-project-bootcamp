@@ -9,5 +9,6 @@
     width: calc(100% - 38px);
     flex-direction: column;
     align-items: center;
+    margin-bottom: 36px;
   }
 }
