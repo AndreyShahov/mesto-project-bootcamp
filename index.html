@@ -10,10 +10,14 @@
 <body class="root">
   <div class="page">
     <form class="form">
-      <h2 class="form__heading">Редактировать профиль</h2>
-      <input class="form__text" type="text" value="Жак-Ив Кусто">
-      <input class="form__text" type="text" value="Исследователь океана">
-      <button type="submit">Сохранить</button>
+      <ul class="form__container">
+        <li><h2 class="form__heading">Редактировать профиль</h2></li>
+        <li><input class="form__text form__text_field_author" type="text"
+        value="Жак-Ив Кусто"></li>
+        <li><input class="form__text form__text_field_author-subline" type="text"
+        value="Исследователь океана"></li>
+        <li><button class="button" type="button">Сохранить</button></li>
+      </ul>
     </form>
     <header class="header header__line">
       <img class="header__logo" src="images/header-logo.svg" alt="Логотип">
@@ -23,13 +27,13 @@
           <img class="profile__avatar" src="images/profile-custo.jpg">
           <article class="profile__info">
             <h1 class="profile__author">Жак-Ив Кусто</h1>
-            <button class="edit-button">
+            <button class="button edit-button">
               <img class="profile__edit-button" src="./images/profile-edit-button.svg"
               alt='Редактор'>
             </button>
             <h2 class="profile__author-subline">Исследователь океана</h2>
           </article>
-        <button class="add-button">
+        <button class="button add-button">
           <img class="profile__add-button" src="./images/profile-plus.svg"
           alt="Плюс">
         </button>
