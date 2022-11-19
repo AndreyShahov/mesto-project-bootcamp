@@ -5,4 +5,9 @@
   background-color: transparent;
   padding: 0;
   border: none;
+  transition: opacity 0.5s linear;
+}
+
+.button:hover {
+  opacity: 0.6;
 }

@@ -5,4 +5,19 @@
   padding: 34px 36px 37px;
   display: flex;
   flex-direction: column;
+  background-color: #fff;
+  max-width: 430px;
+  width: 100%;
+  box-sizing: border-box;
+  height: 330px;
+  border-radius: 10px;
+  border: 1px solid #000;
+}
+
+@media screen and (max-width: 500px) {
+  .form__container {
+    max-width: 282px;
+    height: 322px;
+    padding: 25px 22px;
+  }
 }

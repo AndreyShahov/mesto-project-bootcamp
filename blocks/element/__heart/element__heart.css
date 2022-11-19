@@ -4,4 +4,9 @@
   max-width: 22px;
   min-height: 19px;
   width: 100%;
+  transition: opacity 0.5s linear;
+}
+
+.element__heart:hover {
+  opacity: .5;
 }
