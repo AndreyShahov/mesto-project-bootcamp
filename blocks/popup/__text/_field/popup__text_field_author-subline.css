@@ -1,9 +1,9 @@
-.form__text_field_author-subline {
+.popup__text_field_author-subline {
   margin-bottom: 48px;
 }
 
 @media screen and (max-width: 500px) {
-  .form__text_field_author-subline {
+  .popup__text_field_author-subline {
     margin-bottom: 45px;
   }
 }
