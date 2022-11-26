@@ -1,0 +1,10 @@
+.element__like-btn {
+  background-image: url('../../../images/element-like-btn.svg');
+  background-repeat: no-repeat;
+  max-width: 22px;
+  min-height: 19px;
+  width: 100%;
+  transition: opacity 0.5s linear;
+}
+
+

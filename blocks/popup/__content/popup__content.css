@@ -1,7 +1,4 @@
 .popup__content {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
   padding: 34px 36px 37px;
   display: flex;
   flex-direction: column;
