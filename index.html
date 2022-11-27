@@ -24,20 +24,20 @@
         <button class="button profile__add-button"></button>
       </section>
       <section class="elements">
-        <ul class="element">
+        <!-- <ul class="element">
           <li><img class="element__image" src="./images/element-karachayevsk.jpg"
           alt="Карачаевск"></li>
           <li class="element__group">
             <h2 class="element__title">Карачаевск</h2>
-            <button type="button" class="button element__like-btn" href="#"></button>
+            <button type="button" class="button element__like-btn"></button>
           </li>
-        </ul>
+        </ul> -->
         <ul class="element">
           <li><img class="element__image" src="./images/element-elbrus.jpg"
           alt="Эльбрус"></li>
           <li class="element__group">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <button type="button" class="button element__like-btn" href="#"></button>
+            <button type="button" class="button element__like-btn"></button>
           </li>
         </ul>
         <ul class="element">
@@ -45,7 +45,7 @@
           alt="Домбай"></li>
           <li class="element__group">
             <h2 class="element__title">Домбай</h2>
-            <button type="button" class="button element__like-btn" href="#"></button>
+            <button type="button" class="button element__like-btn"></button>
           </li>
         </ul>
         <ul class="element">
@@ -53,7 +53,7 @@
           alt="Эльбрус"></li>
           <li class="element__group">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <button type="button" class="button element__like-btn" href="#"></button>
+            <button type="button" class="button element__like-btn"></button>
           </li>
         </ul>
         <ul class="element">
@@ -61,7 +61,7 @@
           alt="Домбай"></li>
           <li class="element__group">
             <h2 class="element__title">Домбай</h2>
-            <button type="button" class="button element__like-btn" href="#"></button>
+            <button type="button" class="button element__like-btn"></button>
           </li>
         </ul>
         <ul class="element">
@@ -69,7 +69,7 @@
           alt="Карачаевск"></li>
           <li class="element__group">
             <h2 class="element__title">Карачаево-Черкесия</h2>
-            <button type="button" class="button element__like-btn" href="#"></button>
+            <button type="button" class="button element__like-btn"></button>
           </li>
         </ul>
       </section>
@@ -77,7 +77,7 @@
     <footer class="footer">
       <p class="footer__text">&copy; 2022 Mesto Russia</p>
     </footer>
-    <section class="popup popup_opened">
+    <section class="popup popup_type_edit">
       <div class="popup__container">
         <button type="button" class="popup__close-btn"></button>
         <article class="popup__content">
@@ -91,7 +91,46 @@
           <button type="submit" class="button popup__save-btn">Сохранить</button>
         </article>
       </div>
-     </section>
+    </section>
+    <section class="popup popup_type_add-card">
+      <div class="popup__container">
+        <button type="button" class="popup__close-btn"></button>
+        <article class="popup__content">
+          <h2 class="popup__heading">Новое место</h2>
+          <form>
+            <input class="popup__text popup__text_field_author" type="text"
+            placeholder="Название" name="author" id="author">
+            <input class="popup__text popup__text_field_author-subline" type="text"
+            placeholder="Ссылка на картинку" name="subline" id="subline">
+          </form>
+          <button type="submit" class="button popup__save-btn">Сохранить</button>
+        </article>
+      </div>
+    </section>
+    <section class="popup popup_type_image">
+      <div class="popup__container">
+        <button type="button" class="popup__close-btn"></button>
+        <article class="popup__content">
+          <h2 class="popup__heading">Редактировать профиль</h2>
+          <form>
+            <input class="popup__text popup__text_field_author" type="text"
+            value="Жак-Ив Кусто" name="author" id="author">
+            <input class="popup__text popup__text_field_author-subline" type="text"
+            value="Исследователь океана" name="subline" id="subline">
+          </form>
+          <button type="submit" class="button popup__save-btn">Сохранить</button>
+        </article>
+      </div>
+    </section>
+    <template id="element">
+      <ul class="element">
+        <li><img class="element__image"></li>
+        <li class="element__group">
+          <h2 class="element__title"></h2>
+          <button type="button" class="button element__like-btn"></button>
+        </li>
+      </ul>
+    </template>
   </div>
 
   <script src="script.js"></script>
