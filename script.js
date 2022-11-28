@@ -11,10 +11,11 @@ const sublineField = document.querySelector('.profile__author-subline');
 const editSaveBtn = popupEdit.querySelector('.popup__save-btn');
 const addSaveBtn = popupAdd.querySelector('.popup__save-btn');
 const elements = document.querySelector('.elements');
-const elementImage = element.querySelector('.element__image');
 const addAuthorInput = popupAdd.querySelector('.popup__text_field_author');
 const addSublineInput = popupAdd.querySelector('.popup__text_field_author-subline');
 const likeBtn = document.querySelector('.element__like-btn');
+const trash = document.querySelector('.element__trash-btn');
+const element = document.querySelector('.element');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -63,6 +64,10 @@ function like() {
 
 likeBtn.addEventListener('click', like);
 
-function deletePopup() {
-  add.classList.remove('');
+trash.addEventListener('click', deleteCard);
+
+function deleteCard() {
+  trash.parentElement.parentElement.remove();
 }
+
+
