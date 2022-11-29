@@ -4,8 +4,9 @@
   width: 100%;
   background-color: transparent;
   position: fixed;
-  top: calc(50% - 330px/2 - 40px);
-  left: calc(50% - 430px/2);
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%,-50%);
   z-index: 3;
   box-shadow: 0 0 25px rgba(0, 0, 0, .15);
 }

@@ -1,9 +1,12 @@
+const popups = document.querySelectorAll('popup');
 const editBtn = document.querySelector('.profile__edit-button');
 const addBtn = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('.popup_type_edit');
+const popupImage = document.querySelector('.popup_type_image');
 const popupAdd = document.querySelector('.popup_type_add-card');
 const editCloseBtn = popupEdit.querySelector('.popup__close-btn');
 const addCloseBtn = popupAdd.querySelector('.popup__close-btn');
+const imageCloseBtn = popupImage.querySelector('.popup__close-btn');
 const editAuthorInput = popupEdit.querySelector('.popup__text_field_author');
 const editSublineInput = popupEdit.querySelector('.popup__text_field_author-subline');
 const authorField = document.querySelector('.profile__author');
@@ -16,6 +19,7 @@ const addSublineInput = popupAdd.querySelector('.popup__text_field_author-sublin
 const likeBtn = document.querySelector('.element__like-btn');
 const trash = document.querySelector('.element__trash-btn');
 const element = document.querySelector('.element');
+const image = document.querySelector('.element__image');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -23,6 +27,7 @@ function openPopup(popup) {
 
 editBtn.addEventListener('click', () => openPopup(popupEdit));
 addBtn.addEventListener('click', () => openPopup(popupAdd));
+image.addEventListener('click', () => openPopup(popupImage) );
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
@@ -30,6 +35,7 @@ function closePopup(popup) {
 
 editCloseBtn.addEventListener('click', () => closePopup(popupEdit));
 addCloseBtn.addEventListener('click', () => closePopup(popupAdd));
+imageCloseBtn.addEventListener('click', () => closePopup(popupImage));
 
 function handleFormSubmit() {
   const authorValue = editAuthorInput.value;
