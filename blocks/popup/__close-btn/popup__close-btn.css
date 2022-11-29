@@ -9,6 +9,7 @@
   padding: 0;
   border: none;
   transition: opacity 0.5s linear;
+  align-self: flex-end;
 }
 
 .popup__close-btn:hover {

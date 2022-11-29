@@ -42,4 +42,5 @@
 @import url(../blocks/popup/__text/_field/popup__text_field_author-subline.css);
 @import url(../blocks/popup/__save-btn/popup__save-btn.css);
 @import url(../blocks/popup/__content/_type/popup_content_type_image.css);
+@import url(../blocks/popup/__caption/popup__caption.css);
 
