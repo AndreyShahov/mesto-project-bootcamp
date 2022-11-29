@@ -27,7 +27,7 @@ function openPopup(popup) {
 
 editBtn.addEventListener('click', () => openPopup(popupEdit));
 addBtn.addEventListener('click', () => openPopup(popupAdd));
-image.addEventListener('click', () => openPopup(popupImage) );
+image.addEventListener('click', () => openPopup(popupImage));
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');

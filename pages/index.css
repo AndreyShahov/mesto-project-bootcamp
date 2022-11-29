@@ -25,6 +25,7 @@
 @import url(../blocks/element/__like-btn/element__like-btn.css);
 @import url(../blocks/element/__like-btn/_active/element__like-btn_active.css);
 @import url(../blocks/element/__trash-btn/element__trash-btn.css);
+@import url(../blocks/element/__image/_size/element__image_size_m.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
@@ -40,4 +41,5 @@
 @import url(../blocks/popup/__text/_field/popup__text_field_author.css);
 @import url(../blocks/popup/__text/_field/popup__text_field_author-subline.css);
 @import url(../blocks/popup/__save-btn/popup__save-btn.css);
+@import url(../blocks/popup/__content/_type/popup_content_type_image.css);
 
