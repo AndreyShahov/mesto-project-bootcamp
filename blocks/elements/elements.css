@@ -2,6 +2,7 @@
   width: calc(100% - 400px);
   display: grid;
   grid-template-columns: repeat(auto-fit, 282px);
+  grid-template-rows: repeat(6, 361px);
   justify-content: center;
   gap: 20px 17px;
   margin-bottom: 67px;
