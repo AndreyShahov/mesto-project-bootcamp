@@ -59,7 +59,8 @@ editCloseBtn.addEventListener('click', () => closePopup(popupEdit));
 addCloseBtn.addEventListener('click', () => closePopup(popupAdd));
 imageCloseBtn.addEventListener('click', () => closePopup(popupImage));
 
-function handleFormSubmit() {
+function handleFormSubmit(evt) {
+  evt.preventDefault();
   const authorValue = editAuthorInput.value;
   const sublineValue = editSublineInput.value;
 
@@ -110,7 +111,8 @@ initialCards.forEach((item) => {
   addCard(item, elements);
 });
 
-addSaveBtn.addEventListener('click', () => {
+addSaveBtn.addEventListener('click', (evt) => {
+  evt.preventDefault();
   const newCard = {};
   newCard.name = addAuthorInput.value;
   newCard.link = addSublineInput.value;
