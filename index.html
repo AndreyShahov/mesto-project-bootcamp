@@ -35,9 +35,10 @@
           <h2 class="popup__heading">Редактировать профиль</h2>
           <form name="edit">
             <input class="popup__text popup__text_field_author" type="text"
-            value="Жак-Ив Кусто" name="author" id="author">
+            value="Жак-Ив Кусто" name="author" id="author" minlength="2" maxlength="40">
             <input class="popup__text popup__text_field_author-subline" type="text"
-            value="Исследователь океана" name="subline" id="subline">
+            value="Исследователь океана" name="subline" id="subline" minlength="2"
+            maxlength="200">
             <button type="submit" class="button popup__save-btn"
             name="submit" id="submit">Сохранить</button>
           </form>
@@ -51,8 +52,8 @@
           <h2 class="popup__heading">Новое место</h2>
           <form name="add">
             <input class="popup__text popup__text_field_author" type="text"
-            placeholder="Название" name="author" id="author">
-            <input class="popup__text popup__text_field_author-subline" type="text"
+            placeholder="Название" name="author" id="author" minlength="2" maxlength="30">
+            <input class="popup__text popup__text_field_author-subline" type="url"
             placeholder="Ссылка на картинку" name="subline" id="subline">
             <button type="submit" class="button popup__save-btn">Сохранить</button>
           </form>
