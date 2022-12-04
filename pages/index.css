@@ -45,4 +45,5 @@
 @import url(../blocks/popup/__content/_type/popup_content_type_image.css);
 @import url(../blocks/popup/__caption/popup__caption.css);
 @import url(../blocks/popup/__bigImage/popup__bigImage.css);
+@import url(../blocks/popup/__save-btn/_disabled/popup__save-btn_disabled.css);
 

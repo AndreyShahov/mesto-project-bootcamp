@@ -90,26 +90,32 @@ btnCloseImage.addEventListener('click', () => closePopup(popupImage));
 
 function formEditCallback(evt) {
   evt.preventDefault();
-  setSubmitButtonState(false);
+
 
   authorField.textContent = authorEdit.value;
   sublineField.textContent = sublineEdit.value;
 
+
   popupEdit.classList.remove('popup_opened');
+
 }
 
 formEdit.addEventListener('submit', formEditCallback);
 
 function formAddCallback(evt) {
   evt.preventDefault();
-  setSubmitButtonState(false);
+
   const newCard = {};
   newCard.name = authorAdd.value;
   newCard.link = sublineAdd.value;
   addCard(newCard, elements);
 
   popupAdd.classList.remove('popup_opened');
+
+
   formAdd.reset();
+  setSubmitButtonState(false, btnSaveAdd);
+
 }
 
 formAdd.addEventListener('submit', formAddCallback);
@@ -139,10 +145,13 @@ function setSubmitButtonState(isFormValid, button) {
   }
 }
 
-function isValid(form, button) {
-  const isValid = form.elements.author.value.length > 0 && form.elements.subline.value.length > 0;
-  setSubmitButtonState(isValid, button);
-}
+formEdit.addEventListener('input', () => {
+  const isValid = authorEdit.value.length > 1 && sublineEdit.value.length > 1;
+  setSubmitButtonState(isValid, btnSaveEdit);
+});
 
-formEdit.addEventListener('input', () => isValid(formEdit, btnSaveEdit));
-formAdd.addEventListener('input', () => isValid(formAdd, btnSaveAdd));
+formAdd.addEventListener('input', () => {
+  const isValid = authorAdd.value.length > 1 && sublineAdd.value.length > 1;
+  setSubmitButtonState(isValid, btnSaveAdd);
+});
+
