@@ -6,15 +6,17 @@ const popupAdd = document.querySelector('.popup_type_add-card');
 const btnCloseEdit = popupEdit.querySelector('.popup__close-btn');
 const btnCloseAdd = popupAdd.querySelector('.popup__close-btn');
 const btnCloseImage = popupImage.querySelector('.popup__close-btn');
-const authorInputEdit = popupEdit.querySelector('.popup__text_field_author');
-const sublineInputEdit = popupEdit.querySelector('.popup__text_field_author-subline');
 const authorField = document.querySelector('.profile__author');
 const sublineField = document.querySelector('.profile__author-subline');
-const btnSaveEdit = popupEdit.querySelector('.popup__save-btn');
-const btnSaveAdd = popupAdd.querySelector('.popup__save-btn');
 const authorInputAdd = popupAdd.querySelector('.popup__text_field_author');
 const sublineInputAdd = popupAdd.querySelector('.popup__text_field_author-subline');
 const elements = document.querySelector('.elements');
+const formEdit = document.forms.edit;
+const formAdd = document.forms.add;
+const authorEdit = formEdit.elements.author;
+const sublineEdit = formEdit.elements.subline;
+const authorAdd = formAdd.elements.author;
+const sublineAdd = formAdd.elements.subline;
 
 const initialCards = [
   {
@@ -58,18 +60,15 @@ btnCloseEdit.addEventListener('click', () => closePopup(popupEdit));
 btnCloseAdd.addEventListener('click', () => closePopup(popupAdd));
 btnCloseImage.addEventListener('click', () => closePopup(popupImage));
 
-function handleFormSubmit(evt) {
+function formEditCallback(evt) {
   evt.preventDefault();
-  const authorValue = authorInputEdit.value;
-  const sublineValue = sublineInputEdit.value;
-
-  authorField.textContent = authorValue;
-  sublineField.textContent = sublineValue;
+  authorField.textContent = authorEdit.value;
+  sublineField.textContent = sublineEdit.value;
 
   popupEdit.classList.remove('popup_opened')
 }
 
-btnSaveEdit.addEventListener('click', handleFormSubmit);
+formEdit.addEventListener('submit', formEditCallback);
 
 function createCard(item) {
   const elementTemplate = document.querySelector('#element').content.querySelector('.element');
@@ -82,12 +81,17 @@ function createCard(item) {
   image.alt = item.name;
   newElement.querySelector('.element__title').textContent = item.name,
 
- likeBtn.addEventListener('click', () => {
-  likeBtn.classList.toggle('element__like-btn_active');
+ elements.addEventListener('click', (evt) => {
+
+    if (evt.target.classList.contains('element__like-btn')) {
+      evt.target.classList.toggle('element__like-btn_active');
+    }
+
+
 });
 
-trashBtn.addEventListener('click', () => {
-  trashBtn.parentElement.parentElement.remove();
+trashBtn.addEventListener('click', (evt) => {
+  evt.target.parentElement.parentElement.remove();
 });
 
 image.addEventListener('click', () => {
@@ -110,14 +114,16 @@ initialCards.forEach((item) => {
   addCard(item, elements);
 });
 
-btnSaveAdd.addEventListener('click', (evt) => {
+function formAddCallback(evt) {
   evt.preventDefault();
   const newCard = {};
-  newCard.name = authorInputAdd.value;
-  newCard.link = sublineInputAdd.value;
+  newCard.name = authorAdd.value;
+  newCard.link = sublineAdd.value;
   addCard(newCard, elements);
 
   popupAdd.classList.remove('popup_opened');
   popupAdd.querySelector('form').reset();
-});
+}
+
+formAdd.addEventListener('submit', formAddCallback);
 

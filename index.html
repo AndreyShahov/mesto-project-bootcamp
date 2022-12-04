@@ -33,13 +33,13 @@
         <button type="button" class="popup__close-btn"></button>
         <article class="popup__content">
           <h2 class="popup__heading">Редактировать профиль</h2>
-          <form>
+          <form name="edit">
             <input class="popup__text popup__text_field_author" type="text"
-            value="Жак-Ив Кусто" name="authorEdit" id="authorEdit">
+            value="Жак-Ив Кусто" name="author" id="author">
             <input class="popup__text popup__text_field_author-subline" type="text"
-            value="Исследователь океана" name="sublineEdit" id="sublineEdit">
-            <input type="submit" class="button popup__save-btn" value="Сохранить" 
-            name="submit" id="submit">
+            value="Исследователь океана" name="subline" id="subline">
+            <button type="submit" class="button popup__save-btn"
+            name="submit" id="submit">Сохранить</button>
           </form>
         </article>
       </div>
@@ -49,12 +49,12 @@
         <button type="button" class="popup__close-btn"></button>
         <article class="popup__content">
           <h2 class="popup__heading">Новое место</h2>
-          <form>
+          <form name="add">
             <input class="popup__text popup__text_field_author" type="text"
-            placeholder="Название" name="authorAdd" id="authorAdd">
+            placeholder="Название" name="author" id="author">
             <input class="popup__text popup__text_field_author-subline" type="text"
-            placeholder="Ссылка на картинку" name="sublineAdd" id="sublineAdd">
-            <input type="submit" class="button popup__save-btn" value="Сохранить">
+            placeholder="Ссылка на картинку" name="subline" id="subline">
+            <button type="submit" class="button popup__save-btn">Сохранить</button>
           </form>
         </article>
       </div>
