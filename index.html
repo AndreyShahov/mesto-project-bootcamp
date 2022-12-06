@@ -28,33 +28,33 @@
     <footer class="footer">
       <p class="footer__text">&copy; 2022 Mesto Russia</p>
     </footer>
-    <section class="popup popup_type_edit">
+    <div class="popup popup_type_edit">
       <div class="popup__container">
         <button type="button" class="popup__close-btn"></button>
         <article class="popup__content">
           <h2 class="popup__heading">Редактировать профиль</h2>
-          <form name="edit">
-            <input class="popup__text popup__text_field_author" type="text"
+          <form name="edit" novalidate>
+            <input class="popup__text popup__text_field_author" type="text" required
             value="Жак-Ив Кусто" name="author" id="author" minlength="2" maxlength="40">
             <input class="popup__text popup__text_field_author-subline" type="text"
             value="Исследователь океана" name="subline" id="subline" minlength="2"
-            maxlength="200">
+            maxlength="200" required>
             <button type="submit" class="button popup__save-btn"
             name="submit" id="submit">Сохранить</button>
           </form>
         </article>
       </div>
-    </section>
+    </div>
     <section class="popup popup_type_add-card">
       <div class="popup__container">
         <button type="button" class="popup__close-btn"></button>
         <article class="popup__content">
           <h2 class="popup__heading">Новое место</h2>
-          <form name="add">
-            <input class="popup__text popup__text_field_author" type="text"
+          <form name="add" novalidate>
+            <input class="popup__text popup__text_field_author" type="text" required
             placeholder="Название" name="author" id="author" minlength="2" maxlength="30">
             <input class="popup__text popup__text_field_author-subline" type="url"
-            placeholder="Ссылка на картинку" name="subline" id="subline">
+            placeholder="Ссылка на картинку" name="subline" id="subline" required>
             <button type="submit" class="button popup__save-btn popup__save-btn_disabled"
             disabled>Сохранить</button>
           </form>
@@ -80,6 +80,6 @@
     </template>
   </div>
 
-  <script src="script.js"></script>
+  <script type="module" src="./script.js"></script>
 </body>
 </html>

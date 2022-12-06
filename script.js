@@ -11,6 +11,7 @@ const btnCloseImage = popupImage.querySelector('.popup__close-btn');
 const authorField = document.querySelector('.profile__author');
 const sublineField = document.querySelector('.profile__author-subline');
 const elements = document.querySelector('.elements');
+const bigImage = document.querySelector('.popup__bigImage');
 const formEdit = document.forms.edit;
 const formAdd = document.forms.add;
 const authorEdit = formEdit.elements.author;
@@ -55,11 +56,10 @@ function createCard(item) {
   newElement.querySelector('.element__title').textContent = item.name;
 
   image.addEventListener('click', () => {
-    openPopup(popupImage);
-    const bigImage = document.querySelector('.popup__bigImage');
     bigImage.src = item.link;
     bigImage.alt = item.name;
     document.querySelector('.popup__caption').textContent = item.name;
+    openPopup(popupImage);
   });
 
   return newElement;
@@ -69,10 +69,6 @@ function addCard(item, container) {
   const card = createCard(item);
   container.prepend(card);
 }
-
-initialCards.forEach((item) => {
-  addCard(item, elements);
-});
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -84,23 +80,15 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-btnCloseEdit.addEventListener('click', () => closePopup(popupEdit));
-btnCloseAdd.addEventListener('click', () => closePopup(popupAdd));
-btnCloseImage.addEventListener('click', () => closePopup(popupImage));
-
 function formEditCallback(evt) {
   evt.preventDefault();
-
 
   authorField.textContent = authorEdit.value;
   sublineField.textContent = sublineEdit.value;
 
-
-  popupEdit.classList.remove('popup_opened');
+  closePopup(popupEdit);
 
 }
-
-formEdit.addEventListener('submit', formEditCallback);
 
 function formAddCallback(evt) {
   evt.preventDefault();
@@ -110,14 +98,28 @@ function formAddCallback(evt) {
   newCard.link = sublineAdd.value;
   addCard(newCard, elements);
 
-  popupAdd.classList.remove('popup_opened');
-
+  closePopup(popupAdd);
 
   formAdd.reset();
   setSubmitButtonState(false, btnSaveAdd);
-
 }
 
+function setSubmitButtonState(isFormValid, button) {
+
+  if (isFormValid) {
+    button.removeAttribute('disabled');
+    button.classList.remove('popup__save-btn_disabled');
+  } else {
+    button.setAttribute('disabled', true);
+    button.classList.add('popup__save-btn_disabled');
+  }
+}
+
+btnCloseEdit.addEventListener('click', () => closePopup(popupEdit));
+btnCloseAdd.addEventListener('click', () => closePopup(popupAdd));
+btnCloseImage.addEventListener('click', () => closePopup(popupImage));
+
+formEdit.addEventListener('submit', formEditCallback);
 formAdd.addEventListener('submit', formAddCallback);
 
 elements.addEventListener('click', (evt) => {
@@ -134,17 +136,6 @@ elements.addEventListener('click', (evt) => {
   }
 });
 
-function setSubmitButtonState(isFormValid, button) {
-
-  if (isFormValid) {
-    button.removeAttribute('disabled');
-    button.classList.remove('popup__save-btn_disabled');
-  } else {
-    button.setAttribute('disabled', true);
-    button.classList.add('popup__save-btn_disabled');
-  }
-}
-
 formEdit.addEventListener('input', () => {
   const isValid = authorEdit.value.length > 1 && sublineEdit.value.length > 1;
   setSubmitButtonState(isValid, btnSaveEdit);
@@ -155,3 +146,6 @@ formAdd.addEventListener('input', () => {
   setSubmitButtonState(isValid, btnSaveAdd);
 });
 
+initialCards.forEach((item) => {
+  addCard(item, elements);
+});
