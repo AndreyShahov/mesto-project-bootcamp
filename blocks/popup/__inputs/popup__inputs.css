@@ -1,0 +1,10 @@
+.popup__inputs {
+  min-height: 101px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+}

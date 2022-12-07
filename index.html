@@ -33,12 +33,20 @@
         <button type="button" class="popup__close-btn"></button>
         <article class="popup__content">
           <h2 class="popup__heading">Редактировать профиль</h2>
-          <form name="edit" novalidate>
-            <input class="popup__text popup__text_field_author" type="text" required
-            value="Жак-Ив Кусто" name="author" id="author" minlength="2" maxlength="40">
-            <input class="popup__text popup__text_field_author-subline" type="text"
-            value="Исследователь океана" name="subline" id="subline" minlength="2"
-            maxlength="200" required>
+          <form name="edit" class="popup__form" novalidate>
+            <div class="popup__inputs">
+              <div>
+                <input class="popup__input popup__input_field_author" type="text" required
+                value="Жак-Ив Кусто" name="userName" id="userName" minlength="2" maxlength="40">
+                <span id="userName-error" class="popup__error-message"></span>
+              </div>
+              <div>
+                <input class="popup__input popup__input_field_author-subline" type="text"
+                value="Исследователь океана" name="about" id="about" minlength="2"
+                maxlength="200" required>
+                <span id="about-error" class="popup__error-message"></span>
+              </div>
+            </div>
             <button type="submit" class="button popup__save-btn"
             name="submit" id="submit">Сохранить</button>
           </form>
@@ -50,11 +58,19 @@
         <button type="button" class="popup__close-btn"></button>
         <article class="popup__content">
           <h2 class="popup__heading">Новое место</h2>
-          <form name="add" novalidate>
-            <input class="popup__text popup__text_field_author" type="text" required
-            placeholder="Название" name="author" id="author" minlength="2" maxlength="30">
-            <input class="popup__text popup__text_field_author-subline" type="url"
-            placeholder="Ссылка на картинку" name="subline" id="subline" required>
+          <form name="add" class="popup__form" novalidate>
+            <div class="popup__inputs">
+              <div>
+                <input class="popup__input popup__input_field_author" type="text" required
+                placeholder="Название" name="cardName" id="cardName" minlength="2" maxlength="30">
+                <span id="cardName-error" class="popup__error-message"></span>
+              </div>
+              <div>
+                <input class="popup__input popup__input_field_author-subline" type="url"
+                placeholder="Ссылка на картинку" name="link" id="link" required>
+                <span id="link-error" class="popup__error-message"></span>
+              </div>
+            </div>
             <button type="submit" class="button popup__save-btn popup__save-btn_disabled"
             disabled>Сохранить</button>
           </form>
@@ -80,6 +96,6 @@
     </template>
   </div>
 
-  <script type="module" src="./script.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>
