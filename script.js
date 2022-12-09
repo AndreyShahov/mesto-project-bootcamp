@@ -137,6 +137,10 @@ const errorMessages = {
   'wrongUrl': 'Введите адрес сайта.'
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> feature/validCopy
  function isValid(input) {
   input.setCustomValidity('');
 
@@ -195,4 +199,26 @@ function sestButtonDesable(button, state) {
 
  formEditCard.addEventListener('input', handleInputForm);
 
+<<<<<<< HEAD
  formAddCard.addEventListener('input', handleInputForm);
+=======
+ formAddCard.addEventListener('input', handleInputForm);
+
+ const hasInvalidInput = (evt, inputList) => {
+  const currentForm = evt.CurrentTarget;
+  inputList = Array.from(currentForm.querySelectorAll('popup__input'));
+  return inputList.some((inputElement) => {
+    
+    return !inputElement.validity.valid;
+  });
+ }
+
+ const toggleButtonState = (inputList, button) => {
+
+  if (hasInvalidInput(inputList)) {
+
+  } else {
+
+  }
+ }
+>>>>>>> feature/validCopy
