@@ -5,9 +5,6 @@ const popupImage = document.querySelector('.popup_type_image');
 const popupAdd = document.querySelector('.popup_type_add-card');
 const btnCloseEdit = popupEdit.querySelector('.popup__close-btn');
 const btnCloseAdd = popupAdd.querySelector('.popup__close-btn');
-const btnSaveEdit = popupEdit.querySelector('.popup__save-btn');
-const btnSaveAdd = popupAdd.querySelector('.popup__save-btn');
-const btnCloseImage = popupImage.querySelector('.popup__close-btn');
 const authorField = document.querySelector('.profile__author');
 const sublineField = document.querySelector('.profile__author-subline');
 const elements = document.querySelector('.elements');
@@ -18,6 +15,7 @@ const authorEdit = formEditCard.elements.userName;
 const sublineEdit = formEditCard.elements.about;
 const authorAdd = formAddCard.elements.cardName;
 const sublineAdd = formAddCard.elements.link;
+const popupList = Array.from(document.querySelectorAll('.popup'));
 
 const initialCards = [
   {
@@ -75,6 +73,7 @@ function addCard(item, container) {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
+
 btnEdit.addEventListener('click', () => openPopup(popupEdit));
 btnAdd.addEventListener('click', () => openPopup(popupAdd));
 
@@ -94,11 +93,31 @@ function formAddCardCallback(evt) {
   formAddCard.reset();
 }
 
-btnCloseEdit.addEventListener('click', () => closePopup(popupEdit));
+function keyHandler(evt) {
+  if (evt.key === 'Escape') {
+   popupList.forEach((popup) => {
+    closePopup(popup);
+   });
+  }
+}
 
-btnCloseAdd.addEventListener('click', () => closePopup(popupAdd));
+document.addEventListener('keydown', keyHandler);
 
-btnCloseImage.addEventListener('click', () => closePopup(popupImage));
+function closePopupByOverlay() {
+  popupList.forEach((popup) => {
+    popup.querySelector('.popup__overlay').addEventListener('click', () => closePopup(popup));
+  });
+}
+
+closePopupByOverlay();
+
+function closePopupByBtn() {
+  popupList.forEach((popup) => {
+    popup.querySelector('.popup__close-btn').addEventListener('click', () => closePopup(popup));
+  });
+}
+
+closePopupByBtn();
 
 formEditCard.addEventListener('submit', formEditCardCallback);
 formAddCard.addEventListener('submit', formAddCardCallback);
@@ -203,7 +222,6 @@ const hasInvalidInput = (formElement) => {
  formEditCard.addEventListener('input', handleInputForm);
 
  formAddCard.addEventListener('input', handleInputForm);
-
 
 
 

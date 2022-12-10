@@ -1,12 +1,12 @@
-.popup {
+  .popup {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.5s, opacity 0.5s linear;
 }
 
-.popup::before {
+.popup__overlay {
   content: '';
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
