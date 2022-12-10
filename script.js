@@ -16,6 +16,7 @@ const sublineEdit = formEditCard.elements.about;
 const authorAdd = formAddCard.elements.cardName;
 const sublineAdd = formAddCard.elements.link;
 const popupList = Array.from(document.querySelectorAll('.popup'));
+btnSaveAdd = popupAdd.querySelector('.popup__save-btn');
 
 const initialCards = [
   {
@@ -91,6 +92,8 @@ function formAddCardCallback(evt) {
   closePopup(popupAdd);
 
   formAddCard.reset();
+  console.log(btnSaveAdd);
+  setButtonDesable(btnSaveAdd, true);
 }
 
 function keyHandler(evt) {
@@ -182,9 +185,10 @@ const errorMessages = {
 
  function isInputValid(input) {
   const currentSpan = input.parentNode.querySelector(`#${input.id}-error`);
-  isValid(input);
 
-  currentSpan.textContent = input.validationMessage;
+  if (!isValid(input)) {
+    currentSpan.textContent = input.validationMessage;
+  }
  }
 
 function setButtonDesable(button, state) {
@@ -197,31 +201,36 @@ function setButtonDesable(button, state) {
   }
 }
 
-const hasInvalidInput = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-
-  return inputList.some((inputElement) => {
-
+const hasInvalidInput = (inputList) => {
+  return  inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
 };
 
- function handleInputForm(evt) {
-  const currentForm = evt.currentTarget;
-  const submitButton = currentForm.querySelector('.popup__save-btn');
-
-  if (hasInvalidInput(currentForm)) {
-  setButtonDesable(submitButton, true);
-} else {
-  setButtonDesable(submitButton, false);
+function toggleButtonState(inputList, buttonElement) {
+  if (hasInvalidInput(inputList)) {
+    setButtonDesable(buttonElement, true);
+  } else {
+    setButtonDesable(buttonElement, false);
+  }
 }
 
-  isInputValid(evt.target);
- }
+function setEventListeners(formElement){
+  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+  const buttonElement = formElement.querySelector('.popup__save-btn');
 
- formEditCard.addEventListener('input', handleInputForm);
+  toggleButtonState(inputList, buttonElement);
 
- formAddCard.addEventListener('input', handleInputForm);
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', () => {
+      isInputValid(inputElement);
+      toggleButtonState(inputList, buttonElement);
+    });
+  });
+}
+
+Array.from(document.forms).forEach(form => setEventListeners(form));
+
 
 
 
