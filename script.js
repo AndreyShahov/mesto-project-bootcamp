@@ -123,10 +123,10 @@ initialCards.forEach((item) => {
 
 function formEditCardCallback(evt) {
   evt.preventDefault();
-  
+
   authorField.textContent = authorEdit.value;
   sublineField.textContent = sublineEdit.value;
-  
+
   closePopup(popupEdit);
 
 }
@@ -137,88 +137,73 @@ const errorMessages = {
   'wrongUrl': 'Введите адрес сайта.'
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> feature/validCopy
  function isValid(input) {
   input.setCustomValidity('');
 
   if (input.validity.valueMissing) {
     input.setCustomValidity(errorMessages.empty);
-    
+
     return false;
   }
 
   if (input.validity.tooShort || input.validity.tooLong) {
     input.setCustomValidity(errorMessages.wrongLength);
-    
+
     return false;
   }
 
   if (input.validity.typeMismatch && input.type === 'url') {
     input.setCustomValidity(errorMessages.wrongUrl);
-    
+
     return false;
   }
 
   input.reportValidity();
  }
- 
- 
+
  function isInputValid(input) {
   const currentSpan = input.parentNode.querySelector(`#${input.id}-error`);
   isValid(input);
 
   currentSpan.textContent = input.validationMessage;
- }  
+ }
 
-function sestButtonDesable(button, state) {
+function setButtonDesable(button, state) {
   if (state) {
-    button.removeAttribute('disabled');
-    button.classList.remove('popup__save-btn_disabled');
-  } else {
     button.setAttribute('disabled', true);
     button.classList.add('popup__save-btn_disabled');
+  } else {
+    button.removeAttribute('disabled');
+    button.classList.remove('popup__save-btn_disabled');
   }
 }
+
+const hasInvalidInput = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+
+  return inputList.some((inputElement) => {
+
+    return !inputElement.validity.valid;
+  });
+};
 
  function handleInputForm(evt) {
   const currentForm = evt.currentTarget;
   const submitButton = currentForm.querySelector('.popup__save-btn');
 
-  if (currentForm.checkValidity()) {
-  sestButtonDesable(submitButton, true); 
+  if (hasInvalidInput(currentForm)) {
+  setButtonDesable(submitButton, true);
 } else {
-  sestButtonDesable(submitButton, false);
+  setButtonDesable(submitButton, false);
 }
 
   isInputValid(evt.target);
  }
 
-
  formEditCard.addEventListener('input', handleInputForm);
 
-<<<<<<< HEAD
- formAddCard.addEventListener('input', handleInputForm);
-=======
  formAddCard.addEventListener('input', handleInputForm);
 
- const hasInvalidInput = (evt, inputList) => {
-  const currentForm = evt.CurrentTarget;
-  inputList = Array.from(currentForm.querySelectorAll('popup__input'));
-  return inputList.some((inputElement) => {
-    
-    return !inputElement.validity.valid;
-  });
- }
 
- const toggleButtonState = (inputList, button) => {
 
-  if (hasInvalidInput(inputList)) {
 
-  } else {
-
-  }
- }
->>>>>>> feature/validCopy
