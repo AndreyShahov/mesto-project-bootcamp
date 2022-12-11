@@ -1,3 +1,6 @@
+import { initialCards,elements, bigImage, popupImage } from "./data.js";
+import { openPopup } from "./utils.js";
+
 function createCard(item) {
     const elementTemplate = document.querySelector('#element').content.querySelector('.element');
     const newElement = elementTemplate.cloneNode(true);
@@ -8,18 +11,22 @@ function createCard(item) {
     newElement.querySelector('.element__title').textContent = item.name;
 
     image.addEventListener('click', () => {
-      bigImage.src = item.link;
-      bigImage.alt = item.name;
-      document.querySelector('.popup__caption').textContent = item.name;
-      openPopup(popupImage);
+        bigImage.src = item.link;
+        bigImage.alt = item.name;
+        document.querySelector('.popup__caption').textContent = item.name;
+        openPopup(popupImage);
     });
 
     return newElement;
-  }
+}
 
-  function addCard(item, container) {
+function addCard(item, container) {
     const card = createCard(item);
     container.prepend(card);
-  }
+}
 
-  export {addCard};
+initialCards.forEach((item) => {
+    addCard(item, elements);
+});
+
+export { addCard };

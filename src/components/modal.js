@@ -1,10 +1,10 @@
-import { authorAdd, sublineAdd, elements, popupAdd, formAddCard, btnSaveAdd } from "./data.js";
-import { setButtonDesable } from "../index.js";
+import {
+    authorAdd, sublineAdd, elements, popupAdd, formAddCard, btnSaveAdd, popupList, popupEdit, authorEdit,
+    sublineEdit, authorField, sublineField
+} from "./data.js";
+import { setButtonDesable } from "./validate.js";
+import { closePopup} from "./utils.js";
 import { addCard } from "./card.js";
-
-function closePopup(popup) {
-    popup.classList.remove('popup_opened');
-  }
 
 function formAddCardCallback(evt) {
     evt.preventDefault();
@@ -17,6 +17,35 @@ function formAddCardCallback(evt) {
 
     formAddCard.reset();
     setButtonDesable(btnSaveAdd, true);
-  }
+}
 
-export {closePopup, formAddCardCallback};
+function formEditCardCallback(evt) {
+    evt.preventDefault();
+
+    authorField.textContent = authorEdit.value;
+    sublineField.textContent = sublineEdit.value;
+
+    closePopup(popupEdit);
+
+}
+
+function keyHandler(evt) {
+    if (evt.key === 'Escape') {
+        popupList.forEach((popup) => {
+            closePopup(popup);
+        });
+    }
+}
+
+function closePopupByOverlay() {
+    popupList.forEach((popup) => {
+        popup.querySelector('.popup__overlay').addEventListener('click', () => closePopup(popup));
+    });
+}
+
+function closePopupByBtn() {
+    popupList.forEach((popup) => {
+        popup.querySelector('.popup__close-btn').addEventListener('click', () => closePopup(popup));
+    });
+}
+export { formAddCardCallback, formEditCardCallback, keyHandler, closePopupByOverlay, closePopupByBtn };

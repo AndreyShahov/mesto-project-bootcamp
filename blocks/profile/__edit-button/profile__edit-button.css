@@ -4,7 +4,7 @@
   width: 100%;
   border: 1px solid #fff;
   align-self: flex-end;
-  background-image: url('../../../images/profile-edit-button.svg');
+  background-image: url('../../../src/images/profile-edit-button.svg');
   background-size: 10px;
   background-repeat: no-repeat;
   background-position: center;
