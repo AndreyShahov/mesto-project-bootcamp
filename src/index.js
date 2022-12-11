@@ -1,74 +1,9 @@
-import '../pages/index.css';
+import './index.css';
+import {btnEdit, btnAdd, popupEdit, popupImage, popupAdd, authorField, sublineField, elements, bigImage, formEditCard,
+  formAddCard, authorEdit, sublineEdit, authorAdd, sublineAdd, popupList, btnSaveAdd, initialCards} from './components/data.js';
+import {addCard} from './components/card.js';
+import {closePopup, formAddCardCallback} from './components/modal.js';
 
-
-const btnEdit = document.querySelector('.profile__edit-button');
-const btnAdd = document.querySelector('.profile__add-button');
-const popupEdit = document.querySelector('.popup_type_edit');
-const popupImage = document.querySelector('.popup_type_image');
-const popupAdd = document.querySelector('.popup_type_add-card');
-const authorField = document.querySelector('.profile__author');
-const sublineField = document.querySelector('.profile__author-subline');
-const elements = document.querySelector('.elements');
-const bigImage = document.querySelector('.popup__bigImage');
-const formEditCard = document.forms.edit;
-const formAddCard = document.forms.add;
-const authorEdit = formEditCard.elements.userName;
-const sublineEdit = formEditCard.elements.about;
-const authorAdd = formAddCard.elements.cardName;
-const sublineAdd = formAddCard.elements.link;
-const popupList = Array.from(document.querySelectorAll('.popup'));
-const btnSaveAdd = popupAdd.querySelector('.popup__save-btn');
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-function createCard(item) {
-  const elementTemplate = document.querySelector('#element').content.querySelector('.element');
-  const newElement = elementTemplate.cloneNode(true);
-  const image = newElement.querySelector('.element__image');
-
-  image.src = item.link;
-  image.alt = item.name;
-  newElement.querySelector('.element__title').textContent = item.name;
-
-  image.addEventListener('click', () => {
-    bigImage.src = item.link;
-    bigImage.alt = item.name;
-    document.querySelector('.popup__caption').textContent = item.name;
-    openPopup(popupImage);
-  });
-
-  return newElement;
-}
-
-function addCard(item, container) {
-  const card = createCard(item);
-  container.prepend(card);
-}
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -77,22 +12,10 @@ function openPopup(popup) {
 btnEdit.addEventListener('click', () => openPopup(popupEdit));
 btnAdd.addEventListener('click', () => openPopup(popupAdd));
 
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-}
 
-function formAddCardCallback(evt) {
-  evt.preventDefault();
-  const newCard = {};
-  newCard.name = authorAdd.value;
-  newCard.link = sublineAdd.value;
-  addCard(newCard, elements);
 
-  closePopup(popupAdd);
 
-  formAddCard.reset();
-  setButtonDesable(btnSaveAdd, true);
-}
+
 
 function keyHandler(evt) {
   if (evt.key === 'Escape') {
@@ -230,6 +153,6 @@ function setEventListeners(formElement){
 Array.from(document.forms).forEach(form => setEventListeners(form));
 
 
-
+export {setButtonDesable};
 
 
