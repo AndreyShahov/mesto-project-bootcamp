@@ -1,10 +1,11 @@
+import '../pages/index.css';
+
+
 const btnEdit = document.querySelector('.profile__edit-button');
 const btnAdd = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupImage = document.querySelector('.popup_type_image');
 const popupAdd = document.querySelector('.popup_type_add-card');
-const btnCloseEdit = popupEdit.querySelector('.popup__close-btn');
-const btnCloseAdd = popupAdd.querySelector('.popup__close-btn');
 const authorField = document.querySelector('.profile__author');
 const sublineField = document.querySelector('.profile__author-subline');
 const elements = document.querySelector('.elements');
@@ -16,7 +17,7 @@ const sublineEdit = formEditCard.elements.about;
 const authorAdd = formAddCard.elements.cardName;
 const sublineAdd = formAddCard.elements.link;
 const popupList = Array.from(document.querySelectorAll('.popup'));
-btnSaveAdd = popupAdd.querySelector('.popup__save-btn');
+const btnSaveAdd = popupAdd.querySelector('.popup__save-btn');
 
 const initialCards = [
   {
@@ -44,8 +45,6 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-
-
 
 function createCard(item) {
   const elementTemplate = document.querySelector('#element').content.querySelector('.element');
@@ -92,7 +91,6 @@ function formAddCardCallback(evt) {
   closePopup(popupAdd);
 
   formAddCard.reset();
-  console.log(btnSaveAdd);
   setButtonDesable(btnSaveAdd, true);
 }
 
@@ -230,6 +228,7 @@ function setEventListeners(formElement){
 }
 
 Array.from(document.forms).forEach(form => setEventListeners(form));
+
 
 
 
