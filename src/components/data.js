@@ -7,6 +7,7 @@ const authorField = document.querySelector('.profile__author');
 const sublineField = document.querySelector('.profile__author-subline');
 const elements = document.querySelector('.elements');
 const bigImage = document.querySelector('.popup__bigImage');
+const popupCaption = document.querySelector('.popup__caption');
 const formEditCard = document.forms.edit;
 const formAddCard = document.forms.add;
 const authorEdit = formEditCard.elements.userName;
@@ -51,5 +52,6 @@ const errorMessages = {
 
 export {
     btnEdit, btnAdd, popupEdit, popupImage, popupAdd, authorField, sublineField, elements, bigImage, formEditCard,
-    formAddCard, authorEdit, sublineEdit, authorAdd, sublineAdd, popupList, btnSaveAdd, initialCards, errorMessages
+    formAddCard, authorEdit, sublineEdit, authorAdd, sublineAdd, popupList, btnSaveAdd, initialCards, errorMessages,
+    popupCaption
 };

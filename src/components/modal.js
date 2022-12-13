@@ -6,7 +6,7 @@ import { setButtonDesable } from "./validate.js";
 import { closePopup} from "./utils.js";
 import { addCard } from "./card.js";
 
-function formAddCardCallback(evt) {
+function handleAddCardFormSubmit(evt) {
     evt.preventDefault();
     const newCard = {};
     newCard.name = authorAdd.value;
@@ -19,7 +19,7 @@ function formAddCardCallback(evt) {
     setButtonDesable(btnSaveAdd, true);
 }
 
-function formEditCardCallback(evt) {
+function handleProfileFormSubmit(evt) {
     evt.preventDefault();
 
     authorField.textContent = authorEdit.value;
@@ -29,7 +29,7 @@ function formEditCardCallback(evt) {
 
 }
 
-function keyHandler(evt) {
+function handleEscape(evt) {
     if (evt.key === 'Escape') {
         popupList.forEach((popup) => {
             closePopup(popup);
@@ -48,4 +48,4 @@ function closePopupByBtn() {
         popup.querySelector('.popup__close-btn').addEventListener('click', () => closePopup(popup));
     });
 }
-export { formAddCardCallback, formEditCardCallback, keyHandler, closePopupByOverlay, closePopupByBtn };
+export { handleAddCardFormSubmit, handleProfileFormSubmit, handleEscape, closePopupByOverlay, closePopupByBtn };

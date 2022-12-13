@@ -1,15 +1,15 @@
 import './index.css';
 import { btnEdit, btnAdd, popupEdit, popupAdd, elements, formEditCard, formAddCard } from './components/data.js';
 import {
-  formAddCardCallback, formEditCardCallback, keyHandler, closePopupByOverlay, closePopupByBtn
+  handleAddCardFormSubmit, handleProfileFormSubmit, closePopupByOverlay, closePopupByBtn
 } from './components/modal.js';
 import { openPopup } from './components/utils.js';
 
 btnEdit.addEventListener('click', () => openPopup(popupEdit));
 btnAdd.addEventListener('click', () => openPopup(popupAdd));
 
-formEditCard.addEventListener('submit', formEditCardCallback);
-formAddCard.addEventListener('submit', formAddCardCallback);
+formEditCard.addEventListener('submit', handleProfileFormSubmit);
+formAddCard.addEventListener('submit', handleAddCardFormSubmit);
 
 elements.addEventListener('click', (evt) => {
 
@@ -21,7 +21,7 @@ elements.addEventListener('click', (evt) => {
 elements.addEventListener('click', (evt) => {
 
   if (evt.target.classList.contains('element__trash-btn')) {
-    evt.target.parentElement.parentElement.remove();
+    evt.target.closest('.element').remove();
   }
 });
 

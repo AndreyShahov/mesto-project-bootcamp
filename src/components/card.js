@@ -1,4 +1,4 @@
-import { initialCards,elements, bigImage, popupImage } from "./data.js";
+import { initialCards,elements, bigImage, popupImage, popupCaption } from "./data.js";
 import { openPopup } from "./utils.js";
 
 function createCard(item) {
@@ -13,7 +13,7 @@ function createCard(item) {
     image.addEventListener('click', () => {
         bigImage.src = item.link;
         bigImage.alt = item.name;
-        document.querySelector('.popup__caption').textContent = item.name;
+        popupCaption.textContent = item.name;
         openPopup(popupImage);
     });
 
