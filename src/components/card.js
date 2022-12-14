@@ -1,4 +1,4 @@
-import { initialCards,elements, bigImage, popupImage, popupCaption } from "./data.js";
+import { elements, bigImage, popupImage, popupCaption } from "./data.js";
 import { openPopup } from "./utils.js";
 
 function createCard(item) {
@@ -25,8 +25,21 @@ function addCard(item, container) {
     container.prepend(card);
 }
 
-initialCards.forEach((item) => {
-    addCard(item, elements);
-});
+fetch('https://nomoreparties.co/v1/wbf-cohort-3/cards', {
+  headers: {
+    authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
+  }
+})
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promiise.reject(`Что-то не так: ${res.status}`);
+    }
+  })
+  .then(items => {
+    items.forEach(item => addCard(item, elements))
+  })
+  .catch(err => console.log(err));
 
 export { addCard };
