@@ -30,6 +30,13 @@ function addNewCard(item, container) {
   container.prepend(card);
 }
 
+function addStrangeCard(item, container) {
+  const card = createCard(item);
+  container.append(card);
+  const trashBtn = card.querySelector('.element__trash-btn');
+  trashBtn.remove();
+}
+
 fetch('https://nomoreparties.co/v1/wbf-cohort-3/cards', {
   headers: {
     authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
@@ -43,7 +50,14 @@ fetch('https://nomoreparties.co/v1/wbf-cohort-3/cards', {
     }
   })
   .then(items => {
-    items.forEach(item => addCard(item, elements))
+    items.forEach(item => {
+
+      if (item['owner']['_id'] === "135e568bbf5b7f0594e3ab64") {
+        addCard(item, elements);
+      } else {
+        addStrangeCard(item, elements);
+      }
+    })
   })
   .catch(err => console.log(err));
 

@@ -4,7 +4,7 @@ import {
 } from "./data.js";
 import { setButtonDesable } from "./validate.js";
 import { closePopup } from "./utils.js";
-import { addCard, addNewCard } from "./card.js";
+import { addNewCard } from "./card.js";
 
 function handleAddCardFormSubmit(evt) {
     evt.preventDefault();
@@ -31,8 +31,6 @@ function handleAddCardFormSubmit(evt) {
             'link': linkCardValue
         })
     });
-
-
 }
 
 function handleProfileFormSubmit(evt) {
@@ -77,7 +75,5 @@ function closePopupByBtn() {
         popup.querySelector('.popup__close-btn').addEventListener('click', () => closePopup(popup));
     });
 }
-
-
 
 export { handleAddCardFormSubmit, handleProfileFormSubmit, handleEscape, closePopupByOverlay, closePopupByBtn };

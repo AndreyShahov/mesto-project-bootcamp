@@ -18,14 +18,15 @@ const name = document.querySelector('.profile__author');
 const about = document.querySelector('.profile__author-subline');
 const avatar = document.querySelector('.profile__avatar');
 
+
 const errorMessages = {
-    'empty': 'Вы пропустили это поле.',
-    'wrongLength': 'Должно быть от 2 до 30 символов.',
-    'wrongUrl': 'Введите адрес сайта.'
+  'empty': 'Вы пропустили это поле.',
+  'wrongLength': 'Должно быть от 2 до 30 символов.',
+  'wrongUrl': 'Введите адрес сайта.'
 }
 
 export {
-    btnEdit, btnAdd, popupEdit, popupImage, popupAdd, elements, bigImage, formEditCard,
-    formAddCard, authorEdit, sublineEdit, authorAdd, sublineAdd, popupList, btnSaveAdd, errorMessages,
-    popupCaption, name, about, avatar
+  btnEdit, btnAdd, popupEdit, popupImage, popupAdd, elements, bigImage, formEditCard,
+  formAddCard, authorEdit, sublineEdit, authorAdd, sublineAdd, popupList, btnSaveAdd, errorMessages,
+  popupCaption, name, about, avatar
 };
