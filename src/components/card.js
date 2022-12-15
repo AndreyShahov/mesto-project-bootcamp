@@ -5,6 +5,7 @@ function createCard(item) {
   const elementTemplate = document.querySelector('#element').content.querySelector('.element');
   const newElement = elementTemplate.cloneNode(true);
   const trashBtn = newElement.querySelector('.element__trash-btn');
+  const likeBtn =  newElement.querySelector('.element__like-btn');
   const image = newElement.querySelector('.element__image');
 
   image.src = item.link;
@@ -18,8 +19,27 @@ function createCard(item) {
       headers: {
         authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
       }
-    })
+    });
   });
+
+  likeBtn.addEventListener('click', () => {
+    likeBtn.classList.toggle('element__like-btn_active');
+    if(likeBtn.classList.contains('element__like-btn_active')) {
+      fetch(`https://nomoreparties.co/v1/wbf-cohort-3/cards/likes/${item['_id']}`, {
+        method: 'PUT',
+        headers: {
+          authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
+        }
+      })
+    } else {
+      fetch(`https://nomoreparties.co/v1/wbf-cohort-3/cards/likes/${item['_id']}`, {
+        method: 'DELETE',
+        headers: {
+          authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
+        }
+      })
+    }
+  })
 
   image.addEventListener('click', () => {
     bigImage.src = item.link;
