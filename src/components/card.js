@@ -4,11 +4,22 @@ import { openPopup } from "./utils.js";
 function createCard(item) {
   const elementTemplate = document.querySelector('#element').content.querySelector('.element');
   const newElement = elementTemplate.cloneNode(true);
+  const trashBtn = newElement.querySelector('.element__trash-btn');
   const image = newElement.querySelector('.element__image');
 
   image.src = item.link;
   image.alt = item.name;
   newElement.querySelector('.element__title').textContent = item.name;
+
+  trashBtn.addEventListener('click', () => {
+    trashBtn.closest('.element').remove();
+    fetch(`https://nomoreparties.co/v1/wbf-cohort-3/cards/${item['_id']}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
+      }
+    })
+  });
 
   image.addEventListener('click', () => {
     bigImage.src = item.link;
