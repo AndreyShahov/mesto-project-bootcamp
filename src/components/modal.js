@@ -1,9 +1,9 @@
 import {
     authorAdd, sublineAdd, elements, popupAdd, formAddCard, btnSaveAdd, popupList, popupEdit, authorEdit,
-    sublineEdit, authorField, sublineField
+    sublineEdit, name, about
 } from "./data.js";
 import { setButtonDesable } from "./validate.js";
-import { closePopup} from "./utils.js";
+import { closePopup } from "./utils.js";
 import { addCard } from "./card.js";
 
 function handleAddCardFormSubmit(evt) {
@@ -21,12 +21,25 @@ function handleAddCardFormSubmit(evt) {
 
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();
+    const nameValue = authorEdit.value;
+    const aboutValue = sublineEdit.value;
 
-    authorField.textContent = authorEdit.value;
-    sublineField.textContent = sublineEdit.value;
+   name.textContent = nameValue;
+   about.textContent = aboutValue;
+
+    fetch('https://nomoreparties.co/v1/wbf-cohort-3/users/me', {
+        method: 'PATCH',
+        headers: {
+            authorization: '760e0d80-494a-4d91-971a-4eb297900ae7',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            'name': nameValue,
+            'about': aboutValue
+        })
+    });
 
     closePopup(popupEdit);
-
 }
 
 function handleEscape(evt) {

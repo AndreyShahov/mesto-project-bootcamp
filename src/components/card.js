@@ -43,3 +43,4 @@ fetch('https://nomoreparties.co/v1/wbf-cohort-3/cards', {
   .catch(err => console.log(err));
 
 export { addCard };
+
