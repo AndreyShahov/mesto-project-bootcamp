@@ -1,5 +1,5 @@
 import './index.css';
-import { btnEdit, btnAdd, popupEdit, popupAdd, elements, formEditCard, formAddCard, authorEdit, sublineEdit, name, about, avatar } from './components/data.js';
+import { btnEdit, btnAdd, popupEdit, popupAdd, elements, formEditCard, formAddCard, authorEdit, sublineEdit, name, about, avatar, authorAdd, sublineAdd } from './components/data.js';
 import {
   handleAddCardFormSubmit, handleProfileFormSubmit, closePopupByOverlay, closePopupByBtn
 } from './components/modal.js';
@@ -50,6 +50,8 @@ fetch('https://nomoreparties.co/v1/wbf-cohort-3/users/me', {
     avatar.src = data.avatar;
   })
   .catch(err => console.log(err));
+
+
 
 
 
