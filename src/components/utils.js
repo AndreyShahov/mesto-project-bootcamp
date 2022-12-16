@@ -9,5 +9,4 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', handleEscape);
 }
-
 export { openPopup, closePopup };

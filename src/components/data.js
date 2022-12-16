@@ -18,7 +18,6 @@ const name = document.querySelector('.profile__author');
 const about = document.querySelector('.profile__author-subline');
 const avatar = document.querySelector('.profile__avatar');
 
-
 const errorMessages = {
   'empty': 'Вы пропустили это поле.',
   'wrongLength': 'Должно быть от 2 до 30 символов.',
@@ -28,5 +27,5 @@ const errorMessages = {
 export {
   btnEdit, btnAdd, popupEdit, popupImage, popupAdd, elements, bigImage, formEditCard,
   formAddCard, authorEdit, sublineEdit, authorAdd, sublineAdd, popupList, btnSaveAdd, errorMessages,
-  popupCaption, name, about, avatar
+  popupCaption, name, about, avatar,
 };

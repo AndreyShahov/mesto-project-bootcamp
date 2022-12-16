@@ -31,6 +31,7 @@ function handleAddCardFormSubmit(evt) {
             'link': linkCardValue
         })
     });
+
 }
 
 function handleProfileFormSubmit(evt) {
@@ -52,7 +53,6 @@ function handleProfileFormSubmit(evt) {
             'about': aboutValue
         })
     });
-
     closePopup(popupEdit);
 }
 
@@ -77,3 +77,5 @@ function closePopupByBtn() {
 }
 
 export { handleAddCardFormSubmit, handleProfileFormSubmit, handleEscape, closePopupByOverlay, closePopupByBtn };
+
+

@@ -7,6 +7,7 @@ function createCard(item) {
   const trashBtn = newElement.querySelector('.element__trash-btn');
   const likeBtn =  newElement.querySelector('.element__like-btn');
   const image = newElement.querySelector('.element__image');
+  const counterLikes = newElement.querySelector('.element__likes-counter');
 
   image.src = item.link;
   image.alt = item.name;
@@ -24,12 +25,22 @@ function createCard(item) {
 
   likeBtn.addEventListener('click', () => {
     likeBtn.classList.toggle('element__like-btn_active');
-    if(likeBtn.classList.contains('element__like-btn_active')) {
+    if (likeBtn.classList.contains('element__like-btn_active')) {
       fetch(`https://nomoreparties.co/v1/wbf-cohort-3/cards/likes/${item['_id']}`, {
         method: 'PUT',
         headers: {
           authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
         }
+      })
+      .then((res) => {
+        if(res.ok) {
+          return res.json();
+        } else {
+        return Promise.reject(`Что-то не так: ${res.status}`);
+        }
+      })
+      .then((item) => {
+        counterLikes.textContent = item.likes.length;
       })
     } else {
       fetch(`https://nomoreparties.co/v1/wbf-cohort-3/cards/likes/${item['_id']}`, {
@@ -38,8 +49,20 @@ function createCard(item) {
           authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
         }
       })
+      .then((res) => {
+        if(res.ok) {
+          return res.json();
+        } else {
+        return Promise.reject(`Что-то не так: ${res.status}`);
+        }
+      })
+      .then((item) => {
+        counterLikes.textContent = item.likes.length;
+      })
     }
   })
+
+  counterLikes.textContent = item.likes.length;
 
   image.addEventListener('click', () => {
     bigImage.src = item.link;
@@ -68,7 +91,8 @@ function addStrangeCard(item, container) {
   trashBtn.remove();
 }
 
-fetch('https://nomoreparties.co/v1/wbf-cohort-3/cards', {
+
+ fetch('https://nomoreparties.co/v1/wbf-cohort-3/cards', {
   headers: {
     authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
   }
@@ -77,7 +101,7 @@ fetch('https://nomoreparties.co/v1/wbf-cohort-3/cards', {
     if (res.ok) {
       return res.json();
     } else {
-      return Promiise.reject(`Что-то не так: ${res.status}`);
+      return Promise.reject(`Что-то не так: ${res.status}`);
     }
   })
   .then(items => {
@@ -88,9 +112,12 @@ fetch('https://nomoreparties.co/v1/wbf-cohort-3/cards', {
       } else {
         addStrangeCard(item, elements);
       }
+
+
     })
   })
   .catch(err => console.log(err));
 
 export { addNewCard };
+
 
