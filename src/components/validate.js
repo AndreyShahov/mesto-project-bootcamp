@@ -25,7 +25,7 @@ function isValid(input) {
 }
 
 function isInputValid(input) {
-    const currentSpan = input.parentNode.querySelector(`#${input.id}-error`);
+    const currentSpan = input.closest('.popup__form').querySelector(`#${input.id}-error`);
 
     if (!isValid(input)) {
         currentSpan.textContent = input.validationMessage;

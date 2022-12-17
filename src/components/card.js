@@ -1,6 +1,6 @@
 import { imageBig, popupCaption, config, elementTemplate } from "./data.js";
 import { deleteCard, addLike, deleteLike } from "./api.js";
-import { OpenImagePopup } from "./modal.js";
+import { openImagePopup } from "./modal.js";
 import { userId } from "./index.js";
 
 function createCard(item) {
@@ -46,7 +46,7 @@ function createCard(item) {
 
   counterLikes.textContent = item.likes.length;
 
-  image.addEventListener('click', () => OpenImagePopup(imageBig, popupCaption, item));
+  image.addEventListener('click', () => openImagePopup(imageBig, popupCaption, item));
 
   return elementNew;
 }

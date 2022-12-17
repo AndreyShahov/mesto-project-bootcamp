@@ -19,12 +19,13 @@ function handleAddCardFormSubmit(evt) {
     .then(item => {
       addNewCard(item, elements);
     })
+    .then(() => closePopup(popupAdd))
+    .then(() => {
+      formAddCard.reset();
+      setButtonDesable(btnSaveAdd, true, settings);
+    })
     .finally(() => renderLoading(false, btnSaveAdd))
     .catch(err => console.log(err));
-
-  closePopup(popupAdd);
-  formAddCard.reset();
-  setButtonDesable(btnSaveAdd, true, settings);
 }
 
 function handleProfileFormSubmit(evt) {
@@ -32,30 +33,31 @@ function handleProfileFormSubmit(evt) {
   const nameValue = authorEdit.value;
   const aboutValue = sublineEdit.value;
 
-  name.textContent = nameValue;
-  status.textContent = aboutValue
-
   renderLoading(true, btnSaveEdit);
   updateUser(nameValue, aboutValue, config)
+    .then(() => {
+      name.textContent = nameValue;
+      status.textContent = aboutValue;
+    })
+    .then(() => closePopup(popupEdit))
     .finally(() => renderLoading(false, btnSaveEdit))
     .catch(err => console.log(err));
-
-  closePopup(popupEdit);
 }
 
 function handleAvatarFormSubmit(evt) {
   evt.preventDefault();
   const fieldAvatarValue = formAvatarInput.value;
-  avatar.src = fieldAvatarValue;
 
   renderLoading(true, btnSaveAvatar);
   updateAvatar(fieldAvatarValue, config)
+    .then(() => avatar.src = fieldAvatarValue)
+    .then(() => closePopup(popupAvatar))
+    .then(() => {
+      formAvatar.reset();
+      setButtonDesable(btnSaveAvatar, true, settings);
+    })
     .finally(() => renderLoading(false, btnSaveAvatar))
     .catch(err => console.log(err));
-
-  closePopup(popupAvatar);
-  formAvatar.reset();
-  setButtonDesable(btnSaveAvatar, true, settings);
 }
 
 function handleEscape(evt) {
@@ -87,7 +89,7 @@ function renderLoading(isLoading, btn) {
   }
 }
 
-function OpenImagePopup(imageBig, popupCaption, item) {
+function openImagePopup(imageBig, popupCaption, item) {
   imageBig.src = item.link;
   imageBig.alt = item.name;
   popupCaption.textContent = item.name;
@@ -96,7 +98,7 @@ function OpenImagePopup(imageBig, popupCaption, item) {
 
 export {
   handleAddCardFormSubmit, handleProfileFormSubmit, handleEscape, closePopupByOverlay,
-  closePopupByBtn, handleAvatarFormSubmit, OpenImagePopup
+  closePopupByBtn, handleAvatarFormSubmit, openImagePopup
 };
 
 
