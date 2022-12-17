@@ -1,5 +1,5 @@
-import { elements, bigImage, popupCaption } from "./data.js";
-import { getInitialCards, deleteCard } from "./api.js";
+import { bigImage, popupCaption } from "./data.js";
+import { deleteCard, addLike, deleteLike } from "./api.js";
 import { OpenImagePopup } from "./modal.js";
 
 function createCard(item) {
@@ -26,41 +26,19 @@ function createCard(item) {
   likeBtn.addEventListener('click', () => {
     likeBtn.classList.toggle('element__like-btn_active');
 
-  if (likeBtn.classList.contains('element__like-btn_active')) {
-    fetch(`https://nomoreparties.co/v1/wbf-cohort-3/cards/likes/${item['_id']}`, {
-      method: 'PUT',
-      headers: {
-        authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
-      }
-    })
-    .then((res) => {
-      if(res.ok) {
-        return res.json();
-      } else {
-      return Promise.reject(`Что-то не так: ${res.status}`);
-      }
-    })
-    .then((item) => {
-      counterLikes.textContent = item.likes.length;
-    })
-  } else {
-    fetch(`https://nomoreparties.co/v1/wbf-cohort-3/cards/likes/${item['_id']}`, {
-      method: 'DELETE',
-      headers: {
-        authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
-      }
-    })
-    .then((res) => {
-      if(res.ok) {
-        return res.json();
-      } else {
-      return Promise.reject(`Что-то не так: ${res.status}`);
-      }
-    })
-    .then((item) => {
-      counterLikes.textContent = item.likes.length;
-    })
-  }
+    if (likeBtn.classList.contains('element__like-btn_active')) {
+      addLike(item)
+        .then((item) => {
+          counterLikes.textContent = item.likes.length;
+        })
+        .catch(err => console.log(err));
+    } else {
+      deleteLike(item)
+        .then((item) => {
+          counterLikes.textContent = item.likes.length;
+        })
+        .catch(err => console.log(err));
+    }
   });
 
   counterLikes.textContent = item.likes.length;
@@ -87,20 +65,9 @@ function addStrangeCard(item, container) {
   trashBtn.remove();
 }
 
-getInitialCards()
-  .then(items => {
-    items.forEach(item => {
 
-      if (item['owner']['_id'] === "135e568bbf5b7f0594e3ab64") {
-        addCard(item, elements);
-      } else {
-        addStrangeCard(item, elements);
-      }
-    })
-  })
-  .catch(err => console.log(err));
 
-export { addNewCard };
+export { addCard, addNewCard, addStrangeCard };
 
 
 

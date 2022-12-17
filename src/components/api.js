@@ -1,3 +1,19 @@
+export const updateProfileInfo = () => {
+  return fetch('https://nomoreparties.co/v1/wbf-cohort-3/users/me', {
+    headers: {
+      authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
+    }
+  })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return Promise.reject(`Что-то не так: ${res.status}`);
+      }
+    })
+}
+
+
 export const getInitialCards = () => {
   return fetch('https://nomoreparties.co/v1/wbf-cohort-3/cards', {
     headers: {
@@ -40,11 +56,11 @@ export const postNewCard = (nameCardValue, linkCardValue) => {
       'link': linkCardValue
     })
   })
-  .then(res => {
-    if (!res.ok) {
-      return Promise.reject(`Что-то не так: ${res.status}`);
-    }
-  })
+    .then(res => {
+      if (!res.ok) {
+        return Promise.reject(`Что-то не так: ${res.status}`);
+      }
+    })
 }
 
 export const updateUser = (nameValue, aboutValue) => {
@@ -59,11 +75,11 @@ export const updateUser = (nameValue, aboutValue) => {
       'about': aboutValue
     })
   })
-  .then(res => {
-    if (!res.ok) {
-      return Promise.reject(`Что-то не так: ${res.status}`);
-    }
-  })
+    .then(res => {
+      if (!res.ok) {
+        return Promise.reject(`Что-то не так: ${res.status}`);
+      }
+    })
 }
 
 export const updateAvatar = (fieldAvatarValue) => {
@@ -77,9 +93,42 @@ export const updateAvatar = (fieldAvatarValue) => {
       'avatar': fieldAvatarValue,
     })
   })
-  .then(res => {
-    if (!res.ok) {
-      return Promise.reject(`Что-то не так: ${res.status}`);
+    .then(res => {
+      if (!res.ok) {
+        return Promise.reject(`Что-то не так: ${res.status}`);
+      }
+    })
+}
+
+export const addLike = (item) => {
+  return fetch(`https://nomoreparties.co/v1/wbf-cohort-3/cards/likes/${item['_id']}`, {
+    method: 'PUT',
+    headers: {
+      authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
     }
   })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return Promise.reject(`Что-то не так: ${res.status}`);
+      }
+    })
+}
+
+
+export const deleteLike = (item) => {
+  return fetch(`https://nomoreparties.co/v1/wbf-cohort-3/cards/likes/${item['_id']}`, {
+    method: 'DELETE',
+    headers: {
+      authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
+    }
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return Promise.reject(`Что-то не так: ${res.status}`);
+      }
+    })
 }
