@@ -1,6 +1,6 @@
 import {
     authorAdd, sublineAdd, elements, popupAdd, formAddCard, btnSaveAdd, popupList, popupEdit, authorEdit,
-    sublineEdit, name, about
+    sublineEdit, name, about, avatar, formAvatarInput, btnSaveAvatar, popupAvatar, formAvatar
 } from "./data.js";
 import { setButtonDesable } from "./validate.js";
 import { closePopup } from "./utils.js";
@@ -56,6 +56,15 @@ function handleProfileFormSubmit(evt) {
     closePopup(popupEdit);
 }
 
+function handleAvatarFormSubmit(evt) {
+  evt.preventDefault();
+  avatar.src = formAvatarInput.value;
+
+  closePopup(popupAvatar);
+  formAvatar.reset();
+  setButtonDesable(btnSaveAvatar, true);
+}
+
 function handleEscape(evt) {
     if (evt.key === 'Escape') {
         popupList.forEach((popup) => {
@@ -76,6 +85,9 @@ function closePopupByBtn() {
     });
 }
 
-export { handleAddCardFormSubmit, handleProfileFormSubmit, handleEscape, closePopupByOverlay, closePopupByBtn };
+export {
+  handleAddCardFormSubmit, handleProfileFormSubmit, handleEscape, closePopupByOverlay,
+  closePopupByBtn, handleAvatarFormSubmit
+};
 
 

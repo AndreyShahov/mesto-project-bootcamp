@@ -1,15 +1,21 @@
 import './index.css';
-import { btnEdit, btnAdd, popupEdit, popupAdd, elements, formEditCard, formAddCard, authorEdit, sublineEdit, name, about, avatar, authorAdd, sublineAdd } from './components/data.js';
 import {
-  handleAddCardFormSubmit, handleProfileFormSubmit, closePopupByOverlay, closePopupByBtn
+  btnEdit, btnAdd, popupEdit, popupAdd, formEditCard, formAddCard, authorEdit,
+  sublineEdit, name, about, avatar, btnAvatar, popupAvatar, formAvatar
+} from './components/data.js';
+import {
+  handleAddCardFormSubmit, handleProfileFormSubmit, closePopupByOverlay, closePopupByBtn,
+  handleAvatarFormSubmit
 } from './components/modal.js';
 import { openPopup } from './components/utils.js';
 
 btnEdit.addEventListener('click', () => openPopup(popupEdit));
 btnAdd.addEventListener('click', () => openPopup(popupAdd));
+btnAvatar.addEventListener('click', () => openPopup(popupAvatar));
 
 formEditCard.addEventListener('submit', handleProfileFormSubmit);
 formAddCard.addEventListener('submit', handleAddCardFormSubmit);
+formAvatar.addEventListener('submit', handleAvatarFormSubmit);
 
 closePopupByOverlay();
 closePopupByBtn();
