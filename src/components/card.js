@@ -1,4 +1,4 @@
-import { imageBig, popupCaption } from "./data.js";
+import { imageBig, popupCaption, config } from "./data.js";
 import { deleteCard, addLike, deleteLike } from "./api.js";
 import { OpenImagePopup } from "./modal.js";
 
@@ -16,7 +16,7 @@ function createCard(item) {
 
   trashBtn.addEventListener('click', () => {
     trashBtn.closest('.element').remove();
-    deleteCard(item)
+    deleteCard(item, config)
   });
 
   if (item['likes'].find(item => item['_id'] === "135e568bbf5b7f0594e3ab64")) {
@@ -27,13 +27,13 @@ function createCard(item) {
     likeBtn.classList.toggle('element__like-btn_active');
 
     if (likeBtn.classList.contains('element__like-btn_active')) {
-      addLike(item)
+      addLike(item, config)
         .then((item) => {
           counterLikes.textContent = item.likes.length;
         })
         .catch(err => console.log(err));
     } else {
-      deleteLike(item)
+      deleteLike(item, config)
         .then((item) => {
           counterLikes.textContent = item.likes.length;
         })

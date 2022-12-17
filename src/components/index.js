@@ -1,7 +1,8 @@
 import '../index.css';
 import {
   btnEdit, btnAdd, popupEdit, popupAdd, formEditCard, formAddCard, authorEdit,
-  sublineEdit, name, status, avatar, btnAvatar, popupAvatar, formAvatar, elements, settings
+  sublineEdit, name, status, avatar, btnAvatar, popupAvatar, formAvatar, elements,
+  settings, config
 } from './data.js';
 import {
   handleAddCardFormSubmit, handleProfileFormSubmit, closePopupByOverlay, closePopupByBtn,
@@ -25,7 +26,7 @@ closePopupByBtn();
 
 enableValidation(settings);
 
-updateProfileInfo()
+updateProfileInfo(config)
   .then(data => {
     name.textContent = data.name;
     authorEdit.value = data.name;
@@ -37,7 +38,7 @@ updateProfileInfo()
   })
   .catch(err => console.log(err));
 
-getInitialCards()
+getInitialCards(config)
   .then(items => {
     items.forEach(item => {
 

@@ -1,135 +1,84 @@
-export const updateProfileInfo = () => {
-  return fetch('https://nomoreparties.co/v1/wbf-cohort-3/users/me', {
-    headers: {
-      authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
-    }
+export const updateProfileInfo = (config) => {
+  return fetch(`${config.baseUrl}/users/me`, {
+    headers: config.headers
   })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return Promise.reject(`Что-то не так: ${res.status}`);
-      }
-    })
+    .then(checkResponse)
 }
 
-export const getInitialCards = () => {
-  return fetch('https://nomoreparties.co/v1/wbf-cohort-3/cards', {
-    headers: {
-      authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
-    }
+export const getInitialCards = (config) => {
+  return fetch(`${config.baseUrl}/cards`, {
+    headers: config.headers
   })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return Promise.reject(`Что-то не так: ${res.status}`);
-      }
-    })
+    .then(checkResponse)
 }
 
-export const deleteCard = (item) => {
-  return fetch(`https://nomoreparties.co/v1/wbf-cohort-3/cards/${item['_id']}`, {
+export const deleteCard = (item, config) => {
+  return fetch(`${config.baseUrl}/cards/${item['_id']}`, {
     method: 'DELETE',
-    headers: {
-      authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
-    }
+    headers: config.headers
   })
-    .then(res => {
-      if (!res.ok) {
-        return Promise.reject(`Что-то не так: ${res.status}`);
-      }
-    })
+    .then(checkResponse)
     .catch(err => console.log(err));
 }
 
-export const postNewCard = (nameCardValue, linkCardValue) => {
-  return fetch('https://nomoreparties.co/v1/wbf-cohort-3/cards', {
+export const postNewCard = (nameCardValue, linkCardValue, config) => {
+  return fetch(`${config.baseUrl}/cards`, {
     method: 'POST',
-    headers: {
-      authorization: '760e0d80-494a-4d91-971a-4eb297900ae7',
-      'Content-Type': 'application/json'
-    },
+    headers: config.headers,
     body: JSON.stringify({
       'name': nameCardValue,
       'link': linkCardValue
     })
   })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Что-то не так: ${res.status}`);
-    }
-  })
+    .then(checkResponse)
 }
 
-export const updateUser = (nameValue, aboutValue) => {
-  return fetch('https://nomoreparties.co/v1/wbf-cohort-3/users/me', {
+export const updateUser = (nameValue, aboutValue, config) => {
+  return fetch(`${config.baseUrl}/users/me`, {
     method: 'PATCH',
-    headers: {
-      authorization: '760e0d80-494a-4d91-971a-4eb297900ae7',
-      'Content-Type': 'application/json'
-    },
+    headers: config.headers,
     body: JSON.stringify({
       'name': nameValue,
       'about': aboutValue
     })
   })
-    .then(res => {
-      if (!res.ok) {
-        return Promise.reject(`Что-то не так: ${res.status}`);
-      }
-    })
+    .then(checkResponse)
 }
 
-export const updateAvatar = (fieldAvatarValue) => {
-  return fetch('https://nomoreparties.co/v1/wbf-cohort-3/users/me/avatar', {
+export const updateAvatar = (fieldAvatarValue, config) => {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: 'PATCH',
-    headers: {
-      authorization: '760e0d80-494a-4d91-971a-4eb297900ae7',
-      'Content-Type': 'application/json'
-    },
+    headers: config.headers,
     body: JSON.stringify({
       'avatar': fieldAvatarValue,
     })
   })
-    .then(res => {
-      if (!res.ok) {
-        return Promise.reject(`Что-то не так: ${res.status}`);
-      }
-    })
+    .then(checkResponse)
 }
 
-export const addLike = (item) => {
-  return fetch(`https://nomoreparties.co/v1/wbf-cohort-3/cards/likes/${item['_id']}`, {
+export const addLike = (item, config) => {
+  return fetch(`${config.baseUrl}/cards/likes/${item['_id']}`, {
     method: 'PUT',
-    headers: {
-      authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
-    }
+    headers: config.headers
   })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return Promise.reject(`Что-то не так: ${res.status}`);
-      }
-    })
+    .then(checkResponse)
 }
 
 
-export const deleteLike = (item) => {
-  return fetch(`https://nomoreparties.co/v1/wbf-cohort-3/cards/likes/${item['_id']}`, {
+export const deleteLike = (item, config) => {
+  return fetch(`${config.baseUrl}/cards/likes/${item['_id']}`, {
     method: 'DELETE',
-    headers: {
-      authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
-    }
+    headers: config.headers
   })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return Promise.reject(`Что-то не так: ${res.status}`);
-      }
-    })
+    .then(checkResponse)
 }
+
+function checkResponse(res) {
+
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Что-то не так: ${res.status}`);
+}
+
+

@@ -24,6 +24,14 @@ const name = document.querySelector('.profile__author');
 const status = document.querySelector('.profile__author-subline');
 const avatar = document.querySelector('.profile__avatar');
 
+const config = {
+  baseUrl: 'https://nomoreparties.co/v1/wbf-cohort-3',
+  headers: {
+    authorization: '760e0d80-494a-4d91-971a-4eb297900ae7',
+    'Content-Type': 'application/json',
+  }
+}
+
 const errorMessages = {
   'empty': 'Вы пропустили это поле.',
   'wrongLength': 'Должно быть от 2 до 30 символов.',
@@ -40,5 +48,5 @@ export {
   btnEdit, btnAdd, popupEdit, popupImage, popupAdd, elements, imageBig, formEditCard,
   formAddCard, authorEdit, sublineEdit, authorAdd, sublineAdd, popupList, btnSaveAdd, errorMessages,
   popupCaption, name, status, avatar, btnAvatar, popupAvatar, formAvatarInput, btnSaveAvatar,
-  formAvatar, btnSaveEdit, settings
+  formAvatar, btnSaveEdit, settings, config
 };

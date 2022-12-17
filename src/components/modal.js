@@ -1,7 +1,7 @@
 import {
   authorAdd, sublineAdd, elements, popupAdd, formAddCard, btnSaveAdd, popupList, popupEdit,
   authorEdit, sublineEdit, name, status, avatar, formAvatarInput, btnSaveAvatar, popupAvatar,
-  formAvatar, btnSaveEdit, popupImage, settings
+  formAvatar, btnSaveEdit, popupImage, settings, config
 } from "./data.js";
 import { setButtonDesable } from "./validate.js";
 import { openPopup, closePopup } from "./utils.js";
@@ -15,7 +15,7 @@ function handleAddCardFormSubmit(evt) {
   const linkCardValue = sublineAdd.value;
 
   renderLoading(true, btnSaveAdd);
-  postNewCard(nameCardValue, linkCardValue)
+  postNewCard(nameCardValue, linkCardValue, config)
     .then(item => {
       addNewCard(item, elements);
     })
@@ -36,7 +36,7 @@ function handleProfileFormSubmit(evt) {
   status.textContent = aboutValue
 
   renderLoading(true, btnSaveEdit);
-  updateUser(nameValue, aboutValue)
+  updateUser(nameValue, aboutValue, config)
     .catch(err => console.log(err))
     .finally(() => renderLoading(false, btnSaveEdit));
 
@@ -49,7 +49,7 @@ function handleAvatarFormSubmit(evt) {
   avatar.src = fieldAvatarValue;
 
   renderLoading(true, btnSaveAvatar);
-  updateAvatar(fieldAvatarValue)
+  updateAvatar(fieldAvatarValue, config)
     .catch(err => console.log(err))
     .finally(() => renderLoading(false, btnSaveAvatar));
 
