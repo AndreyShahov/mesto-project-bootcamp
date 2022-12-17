@@ -1,62 +1,43 @@
 import {
-    authorAdd, sublineAdd, elements, popupAdd, formAddCard, btnSaveAdd, popupList, popupEdit, authorEdit,
-    sublineEdit, name, about, avatar, formAvatarInput, btnSaveAvatar, popupAvatar, formAvatar, btnSaveEdit, btnEdit
+  authorAdd, sublineAdd, elements, popupAdd, formAddCard, btnSaveAdd, popupList, popupEdit, authorEdit,
+  sublineEdit, name, about, avatar, formAvatarInput, btnSaveAvatar, popupAvatar, formAvatar, btnSaveEdit, btnEdit
 } from "./data.js";
 import { setButtonDesable } from "./validate.js";
 import { closePopup } from "./utils.js";
 import { addNewCard } from "./card.js";
+import { postNewCard, updateAvatar, updateUser } from "./api.js";
 
 function handleAddCardFormSubmit(evt) {
-    evt.preventDefault();
-    const newCard = {};
-    const nameCardValue = authorAdd.value;
-    const linkCardValue = sublineAdd.value;
-    newCard.name = nameCardValue;
-    newCard.link = linkCardValue;
-    addNewCard(newCard, elements);
+  evt.preventDefault();
+  const newCard = {};
+  const nameCardValue = authorAdd.value;
+  const linkCardValue = sublineAdd.value;
+  newCard.name = nameCardValue;
+  newCard.link = linkCardValue;
+  addNewCard(newCard, elements);
 
-    renderLoading(true, btnSaveAdd);
-    fetch('https://nomoreparties.co/v1/wbf-cohort-3/cards', {
-        method: 'POST',
-        headers: {
-            authorization: '760e0d80-494a-4d91-971a-4eb297900ae7',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            'name': nameCardValue,
-            'link': linkCardValue
-        })
-    })
+  renderLoading(true, btnSaveAdd);
+  postNewCard(nameCardValue, linkCardValue)
     .finally(() => renderLoading(false, btnSaveAdd));
 
-    closePopup(popupAdd);
-    formAddCard.reset();
-    setButtonDesable(btnSaveAdd, true);
+  closePopup(popupAdd);
+  formAddCard.reset();
+  setButtonDesable(btnSaveAdd, true);
 }
 
 function handleProfileFormSubmit(evt) {
-    evt.preventDefault();
-    const nameValue = authorEdit.value;
-    const aboutValue = sublineEdit.value;
+  evt.preventDefault();
+  const nameValue = authorEdit.value;
+  const aboutValue = sublineEdit.value;
 
-    name.textContent = nameValue;
-    about.textContent = aboutValue
+  name.textContent = nameValue;
+  about.textContent = aboutValue
 
-    renderLoading(true, btnSaveEdit);
-    fetch('https://nomoreparties.co/v1/wbf-cohort-3/users/me', {
-        method: 'PATCH',
-        headers: {
-            authorization: '760e0d80-494a-4d91-971a-4eb297900ae7',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            'name': nameValue,
-            'about': aboutValue
-        })
-    })
+  renderLoading(true, btnSaveEdit);
+  updateUser(nameValue, aboutValue)
     .finally(() => renderLoading(false, btnSaveEdit));
 
-    closePopup(popupEdit);
+  closePopup(popupEdit);
 }
 
 function handleAvatarFormSubmit(evt) {
@@ -65,16 +46,7 @@ function handleAvatarFormSubmit(evt) {
   avatar.src = fieldAvatarValue;
 
   renderLoading(true, btnSaveAvatar);
-  fetch('https://nomoreparties.co/v1/wbf-cohort-3/users/me/avatar', {
-        method: 'PATCH',
-        headers: {
-            authorization: '760e0d80-494a-4d91-971a-4eb297900ae7',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            'avatar': fieldAvatarValue,
-        })
-    })
+  updateAvatar(fieldAvatarValue)
     .finally(() => renderLoading(false, btnSaveAvatar));
 
   closePopup(popupAvatar);
@@ -83,23 +55,23 @@ function handleAvatarFormSubmit(evt) {
 }
 
 function handleEscape(evt) {
-    if (evt.key === 'Escape') {
-        popupList.forEach((popup) => {
-            closePopup(popup);
-        });
-    }
+  if (evt.key === 'Escape') {
+    popupList.forEach((popup) => {
+      closePopup(popup);
+    });
+  }
 }
 
 function closePopupByOverlay() {
-    popupList.forEach((popup) => {
-        popup.querySelector('.popup__overlay').addEventListener('click', () => closePopup(popup));
-    });
+  popupList.forEach((popup) => {
+    popup.querySelector('.popup__overlay').addEventListener('click', () => closePopup(popup));
+  });
 }
 
 function closePopupByBtn() {
-    popupList.forEach((popup) => {
-        popup.querySelector('.popup__close-btn').addEventListener('click', () => closePopup(popup));
-    });
+  popupList.forEach((popup) => {
+    popup.querySelector('.popup__close-btn').addEventListener('click', () => closePopup(popup));
+  });
 }
 
 function renderLoading(isLoading, btn) {

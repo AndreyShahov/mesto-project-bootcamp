@@ -1,5 +1,6 @@
 import { elements, bigImage, popupImage, popupCaption } from "./data.js";
 import { openPopup } from "./utils.js";
+import { getInitialCards, deleteCard } from "./api.js";
 
 function createCard(item) {
   const elementTemplate = document.querySelector('#element').content.querySelector('.element');
@@ -15,12 +16,7 @@ function createCard(item) {
 
   trashBtn.addEventListener('click', () => {
     trashBtn.closest('.element').remove();
-    fetch(`https://nomoreparties.co/v1/wbf-cohort-3/cards/${item['_id']}`, {
-      method: 'DELETE',
-      headers: {
-        authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
-      }
-    });
+    deleteCard(item);
   });
 
   // fetch('https://nomoreparties.co/v1/wbf-cohort-3/cards', {
@@ -117,15 +113,7 @@ function addStrangeCard(item, container) {
   trashBtn.remove();
 }
 
-
-getCards()
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Что-то не так: ${res.status}`);
-    }
-  })
+getInitialCards()
   .then(items => {
     items.forEach(item => {
 
@@ -140,15 +128,8 @@ getCards()
 
 export { addNewCard };
 
-function getCards() {
-  return fetch('https://nomoreparties.co/v1/wbf-cohort-3/cards', {
-    headers: {
-      authorization: '760e0d80-494a-4d91-971a-4eb297900ae7'
-    }
-  });
-}
 
-document.addEventListener('click', (evt) => console.log(evt.target));
+
 
 
 
