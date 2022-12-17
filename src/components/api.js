@@ -13,7 +13,6 @@ export const updateProfileInfo = () => {
     })
 }
 
-
 export const getInitialCards = () => {
   return fetch('https://nomoreparties.co/v1/wbf-cohort-3/cards', {
     headers: {
@@ -56,11 +55,13 @@ export const postNewCard = (nameCardValue, linkCardValue) => {
       'link': linkCardValue
     })
   })
-    .then(res => {
-      if (!res.ok) {
-        return Promise.reject(`Что-то не так: ${res.status}`);
-      }
-    })
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(`Что-то не так: ${res.status}`);
+    }
+  })
 }
 
 export const updateUser = (nameValue, aboutValue) => {

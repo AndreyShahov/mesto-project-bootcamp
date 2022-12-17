@@ -10,15 +10,15 @@ import { postNewCard, updateAvatar, updateUser } from "./api.js";
 
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
-  const newCard = {};
+
   const nameCardValue = authorAdd.value;
   const linkCardValue = sublineAdd.value;
-  newCard.name = nameCardValue;
-  newCard.link = linkCardValue;
-  addNewCard(newCard, elements);
 
   renderLoading(true, btnSaveAdd);
   postNewCard(nameCardValue, linkCardValue)
+    .then(item => {
+      addNewCard(item, elements);
+    })
     .catch(err => console.log(err))
     .finally(() => renderLoading(false, btnSaveAdd));
 

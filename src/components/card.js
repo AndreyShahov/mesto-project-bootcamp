@@ -65,8 +65,6 @@ function addStrangeCard(item, container) {
   trashBtn.remove();
 }
 
-
-
 export { addCard, addNewCard, addStrangeCard };
 
 
