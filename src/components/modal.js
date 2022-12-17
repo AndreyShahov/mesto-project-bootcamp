@@ -58,7 +58,19 @@ function handleProfileFormSubmit(evt) {
 
 function handleAvatarFormSubmit(evt) {
   evt.preventDefault();
-  avatar.src = formAvatarInput.value;
+  const fieldAvatarValue = formAvatarInput.value;
+  avatar.src = fieldAvatarValue;
+
+  fetch('https://nomoreparties.co/v1/wbf-cohort-3/users/me/avatar', {
+        method: 'PATCH',
+        headers: {
+            authorization: '760e0d80-494a-4d91-971a-4eb297900ae7',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            'avatar': fieldAvatarValue,
+        })
+    });
 
   closePopup(popupAvatar);
   formAvatar.reset();
