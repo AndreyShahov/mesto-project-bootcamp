@@ -1,16 +1,16 @@
-import './index.css';
+import '../index.css';
 import {
   btnEdit, btnAdd, popupEdit, popupAdd, formEditCard, formAddCard, authorEdit,
   sublineEdit, name, about, avatar, btnAvatar, popupAvatar, formAvatar, elements, settings
-} from './components/data.js';
+} from './data.js';
 import {
   handleAddCardFormSubmit, handleProfileFormSubmit, closePopupByOverlay, closePopupByBtn,
   handleAvatarFormSubmit
-} from './components/modal.js';
-import { openPopup } from './components/utils.js';
-import { getInitialCards, updateProfileInfo } from './components/api';
-import { addCard, addStrangeCard } from './components/card';
-import { enableValidation } from './components/validate';
+} from './modal.js';
+import { openPopup } from './utils.js';
+import { getInitialCards, updateProfileInfo } from './api.js';
+import { addCard, addStrangeCard } from './card.js';
+import { enableValidation } from './validate.js';
 
 btnEdit.addEventListener('click', () => openPopup(popupEdit));
 btnAdd.addEventListener('click', () => openPopup(popupAdd));
