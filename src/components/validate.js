@@ -1,4 +1,4 @@
-import { errorMessages, settings } from "./data.js";
+import { errorMessages } from "./data.js";
 
 function isValid(input) {
     input.setCustomValidity('');
@@ -48,7 +48,7 @@ const hasInvalidInput = (inputList) => {
     });
 };
 
-function toggleButtonState(inputList, buttonElement) {
+function toggleButtonState(inputList, buttonElement, settings) {
     if (hasInvalidInput(inputList)) {
         setButtonDesable(buttonElement, true, settings);
     } else {
@@ -60,12 +60,12 @@ function setEventListeners(formElement, settings) {
     const inputList = Array.from(formElement.querySelectorAll(settings.input));
     const buttonElement = formElement.querySelector(settings.saveBtn);
 
-    toggleButtonState(inputList, buttonElement);
+    toggleButtonState(inputList, buttonElement, settings);
 
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
             isInputValid(inputElement);
-            toggleButtonState(inputList, buttonElement);
+            toggleButtonState(inputList, buttonElement, settings);
         });
     });
 }
