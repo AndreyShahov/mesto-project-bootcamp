@@ -13,3 +13,5 @@
 * Flex
 * Grid
 * Медиа-запросы
+* Form Validation
+* API

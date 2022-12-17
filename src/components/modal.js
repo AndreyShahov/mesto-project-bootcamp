@@ -1,6 +1,6 @@
 import {
   authorAdd, sublineAdd, elements, popupAdd, formAddCard, btnSaveAdd, popupList, popupEdit,
-  authorEdit, sublineEdit, name, about, avatar, formAvatarInput, btnSaveAvatar, popupAvatar,
+  authorEdit, sublineEdit, name, status, avatar, formAvatarInput, btnSaveAvatar, popupAvatar,
   formAvatar, btnSaveEdit, popupImage, settings
 } from "./data.js";
 import { setButtonDesable } from "./validate.js";
@@ -33,7 +33,7 @@ function handleProfileFormSubmit(evt) {
   const aboutValue = sublineEdit.value;
 
   name.textContent = nameValue;
-  about.textContent = aboutValue
+  status.textContent = aboutValue
 
   renderLoading(true, btnSaveEdit);
   updateUser(nameValue, aboutValue)
@@ -87,9 +87,9 @@ function renderLoading(isLoading, btn) {
   }
 }
 
-function OpenImagePopup(bigImage, popupCaption, item) {
-  bigImage.src = item.link;
-  bigImage.alt = item.name;
+function OpenImagePopup(imageBig, popupCaption, item) {
+  imageBig.src = item.link;
+  imageBig.alt = item.name;
   popupCaption.textContent = item.name;
   openPopup(popupImage);
 }

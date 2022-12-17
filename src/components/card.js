@@ -1,18 +1,18 @@
-import { bigImage, popupCaption } from "./data.js";
+import { imageBig, popupCaption } from "./data.js";
 import { deleteCard, addLike, deleteLike } from "./api.js";
 import { OpenImagePopup } from "./modal.js";
 
 function createCard(item) {
   const elementTemplate = document.querySelector('#element').content.querySelector('.element');
-  const newElement = elementTemplate.cloneNode(true);
-  const trashBtn = newElement.querySelector('.element__trash-btn');
-  const likeBtn = newElement.querySelector('.element__like-btn');
-  const image = newElement.querySelector('.element__image');
-  const counterLikes = newElement.querySelector('.element__likes-counter');
+  const elementNew = elementTemplate.cloneNode(true);
+  const trashBtn = elementNew.querySelector('.element__trash-btn');
+  const likeBtn = elementNew.querySelector('.element__like-btn');
+  const image = elementNew.querySelector('.element__image');
+  const counterLikes = elementNew.querySelector('.element__likes-counter');
 
   image.src = item.link;
   image.alt = item.name;
-  newElement.querySelector('.element__title').textContent = item.name;
+  elementNew.querySelector('.element__title').textContent = item.name;
 
   trashBtn.addEventListener('click', () => {
     trashBtn.closest('.element').remove();
@@ -43,9 +43,9 @@ function createCard(item) {
 
   counterLikes.textContent = item.likes.length;
 
-  image.addEventListener('click', () => OpenImagePopup(bigImage, popupCaption, item));
+  image.addEventListener('click', () => OpenImagePopup(imageBig, popupCaption, item));
 
-  return newElement;
+  return elementNew;
 }
 
 function addCard(item, container) {

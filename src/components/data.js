@@ -6,7 +6,7 @@ const popupImage = document.querySelector('.popup_type_image');
 const popupAdd = document.querySelector('.popup_type_add-card');
 const popupAvatar = document.querySelector('.popup_type_change-avatar');
 const elements = document.querySelector('.elements');
-const bigImage = document.querySelector('.popup__bigImage');
+const imageBig = document.querySelector('.popup__bigImage');
 const popupCaption = document.querySelector('.popup__caption');
 const formEditCard = document.forms.edit;
 const formAddCard = document.forms.add;
@@ -21,7 +21,7 @@ const btnSaveEdit = popupEdit.querySelector('.popup__save-btn');
 const btnSaveAdd = popupAdd.querySelector('.popup__save-btn');
 const btnSaveAvatar = popupAvatar.querySelector('.popup__save-btn');
 const name = document.querySelector('.profile__author');
-const about = document.querySelector('.profile__author-subline');
+const status = document.querySelector('.profile__author-subline');
 const avatar = document.querySelector('.profile__avatar');
 
 const errorMessages = {
@@ -37,8 +37,8 @@ const settings = {
   };
 
 export {
-  btnEdit, btnAdd, popupEdit, popupImage, popupAdd, elements, bigImage, formEditCard,
+  btnEdit, btnAdd, popupEdit, popupImage, popupAdd, elements, imageBig, formEditCard,
   formAddCard, authorEdit, sublineEdit, authorAdd, sublineAdd, popupList, btnSaveAdd, errorMessages,
-  popupCaption, name, about, avatar, btnAvatar, popupAvatar, formAvatarInput, btnSaveAvatar,
+  popupCaption, name, status, avatar, btnAvatar, popupAvatar, formAvatarInput, btnSaveAvatar,
   formAvatar, btnSaveEdit, settings
 };

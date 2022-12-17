@@ -1,7 +1,7 @@
 import '../index.css';
 import {
   btnEdit, btnAdd, popupEdit, popupAdd, formEditCard, formAddCard, authorEdit,
-  sublineEdit, name, about, avatar, btnAvatar, popupAvatar, formAvatar, elements, settings
+  sublineEdit, name, status, avatar, btnAvatar, popupAvatar, formAvatar, elements, settings
 } from './data.js';
 import {
   handleAddCardFormSubmit, handleProfileFormSubmit, closePopupByOverlay, closePopupByBtn,
@@ -30,7 +30,7 @@ updateProfileInfo()
     name.textContent = data.name;
     authorEdit.value = data.name;
 
-    about.textContent = data.about;
+    status.textContent = data.about;
     sublineEdit.value = data.about;
 
     avatar.src = data.avatar;
