@@ -7,7 +7,7 @@
   margin-bottom: 67px;
 }
 
-@media screen and (max-width: 682px) {
+@media screen and (max-width: 618px) {
   .elements {
     width: calc(100% - 38px);
     margin-bottom: 48px;
