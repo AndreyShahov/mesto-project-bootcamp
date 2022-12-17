@@ -1,9 +1,10 @@
 import {
-  authorAdd, sublineAdd, elements, popupAdd, formAddCard, btnSaveAdd, popupList, popupEdit, authorEdit,
-  sublineEdit, name, about, avatar, formAvatarInput, btnSaveAvatar, popupAvatar, formAvatar, btnSaveEdit, btnEdit
+  authorAdd, sublineAdd, elements, popupAdd, formAddCard, btnSaveAdd, popupList, popupEdit,
+  authorEdit, sublineEdit, name, about, avatar, formAvatarInput, btnSaveAvatar, popupAvatar,
+  formAvatar, btnSaveEdit, popupImage
 } from "./data.js";
 import { setButtonDesable } from "./validate.js";
-import { closePopup } from "./utils.js";
+import { openPopup, closePopup } from "./utils.js";
 import { addNewCard } from "./card.js";
 import { postNewCard, updateAvatar, updateUser } from "./api.js";
 
@@ -18,6 +19,7 @@ function handleAddCardFormSubmit(evt) {
 
   renderLoading(true, btnSaveAdd);
   postNewCard(nameCardValue, linkCardValue)
+    .catch(err => console.log(err))
     .finally(() => renderLoading(false, btnSaveAdd));
 
   closePopup(popupAdd);
@@ -35,6 +37,7 @@ function handleProfileFormSubmit(evt) {
 
   renderLoading(true, btnSaveEdit);
   updateUser(nameValue, aboutValue)
+    .catch(err => console.log(err))
     .finally(() => renderLoading(false, btnSaveEdit));
 
   closePopup(popupEdit);
@@ -47,6 +50,7 @@ function handleAvatarFormSubmit(evt) {
 
   renderLoading(true, btnSaveAvatar);
   updateAvatar(fieldAvatarValue)
+    .catch(err => console.log(err))
     .finally(() => renderLoading(false, btnSaveAvatar));
 
   closePopup(popupAvatar);
@@ -83,9 +87,16 @@ function renderLoading(isLoading, btn) {
   }
 }
 
+function OpenImagePopup(bigImage, popupCaption, item) {
+  bigImage.src = item.link;
+  bigImage.alt = item.name;
+  popupCaption.textContent = item.name;
+  openPopup(popupImage);
+}
+
 export {
   handleAddCardFormSubmit, handleProfileFormSubmit, handleEscape, closePopupByOverlay,
-  closePopupByBtn, handleAvatarFormSubmit
+  closePopupByBtn, handleAvatarFormSubmit, OpenImagePopup
 };
 
 

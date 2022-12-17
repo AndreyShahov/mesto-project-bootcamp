@@ -26,7 +26,6 @@ export const deleteCard = (item) => {
       }
     })
     .catch(err => console.log(err));
-
 }
 
 export const postNewCard = (nameCardValue, linkCardValue) => {
@@ -40,6 +39,11 @@ export const postNewCard = (nameCardValue, linkCardValue) => {
       'name': nameCardValue,
       'link': linkCardValue
     })
+  })
+  .then(res => {
+    if (!res.ok) {
+      return Promise.reject(`Что-то не так: ${res.status}`);
+    }
   })
 }
 
@@ -55,6 +59,11 @@ export const updateUser = (nameValue, aboutValue) => {
       'about': aboutValue
     })
   })
+  .then(res => {
+    if (!res.ok) {
+      return Promise.reject(`Что-то не так: ${res.status}`);
+    }
+  })
 }
 
 export const updateAvatar = (fieldAvatarValue) => {
@@ -67,5 +76,10 @@ export const updateAvatar = (fieldAvatarValue) => {
     body: JSON.stringify({
       'avatar': fieldAvatarValue,
     })
+  })
+  .then(res => {
+    if (!res.ok) {
+      return Promise.reject(`Что-то не так: ${res.status}`);
+    }
   })
 }
