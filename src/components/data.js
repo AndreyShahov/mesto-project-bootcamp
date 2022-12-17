@@ -17,6 +17,7 @@ const authorAdd = formAddCard.elements.cardName;
 const sublineAdd = formAddCard.elements.link;
 const formAvatarInput = formAvatar.elements.link;
 const popupList = Array.from(document.querySelectorAll('.popup'));
+const btnSaveEdit = popupEdit.querySelector('.popup__save-btn');
 const btnSaveAdd = popupAdd.querySelector('.popup__save-btn');
 const btnSaveAvatar = popupAvatar.querySelector('.popup__save-btn');
 const name = document.querySelector('.profile__author');
@@ -33,5 +34,5 @@ export {
   btnEdit, btnAdd, popupEdit, popupImage, popupAdd, elements, bigImage, formEditCard,
   formAddCard, authorEdit, sublineEdit, authorAdd, sublineAdd, popupList, btnSaveAdd, errorMessages,
   popupCaption, name, about, avatar, btnAvatar, popupAvatar, formAvatarInput, btnSaveAvatar,
-  formAvatar
+  formAvatar, btnSaveEdit
 };

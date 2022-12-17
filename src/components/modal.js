@@ -1,6 +1,6 @@
 import {
     authorAdd, sublineAdd, elements, popupAdd, formAddCard, btnSaveAdd, popupList, popupEdit, authorEdit,
-    sublineEdit, name, about, avatar, formAvatarInput, btnSaveAvatar, popupAvatar, formAvatar
+    sublineEdit, name, about, avatar, formAvatarInput, btnSaveAvatar, popupAvatar, formAvatar, btnSaveEdit, btnEdit
 } from "./data.js";
 import { setButtonDesable } from "./validate.js";
 import { closePopup } from "./utils.js";
@@ -15,11 +15,7 @@ function handleAddCardFormSubmit(evt) {
     newCard.link = linkCardValue;
     addNewCard(newCard, elements);
 
-    closePopup(popupAdd);
-
-    formAddCard.reset();
-    setButtonDesable(btnSaveAdd, true);
-
+    renderLoading(true, btnSaveAdd);
     fetch('https://nomoreparties.co/v1/wbf-cohort-3/cards', {
         method: 'POST',
         headers: {
@@ -30,8 +26,12 @@ function handleAddCardFormSubmit(evt) {
             'name': nameCardValue,
             'link': linkCardValue
         })
-    });
+    })
+    .finally(() => renderLoading(false, btnSaveAdd));
 
+    closePopup(popupAdd);
+    formAddCard.reset();
+    setButtonDesable(btnSaveAdd, true);
 }
 
 function handleProfileFormSubmit(evt) {
@@ -40,8 +40,9 @@ function handleProfileFormSubmit(evt) {
     const aboutValue = sublineEdit.value;
 
     name.textContent = nameValue;
-    about.textContent = aboutValue;
+    about.textContent = aboutValue
 
+    renderLoading(true, btnSaveEdit);
     fetch('https://nomoreparties.co/v1/wbf-cohort-3/users/me', {
         method: 'PATCH',
         headers: {
@@ -52,7 +53,9 @@ function handleProfileFormSubmit(evt) {
             'name': nameValue,
             'about': aboutValue
         })
-    });
+    })
+    .finally(() => renderLoading(false, btnSaveEdit));
+
     closePopup(popupEdit);
 }
 
@@ -61,6 +64,7 @@ function handleAvatarFormSubmit(evt) {
   const fieldAvatarValue = formAvatarInput.value;
   avatar.src = fieldAvatarValue;
 
+  renderLoading(true, btnSaveAvatar);
   fetch('https://nomoreparties.co/v1/wbf-cohort-3/users/me/avatar', {
         method: 'PATCH',
         headers: {
@@ -70,7 +74,8 @@ function handleAvatarFormSubmit(evt) {
         body: JSON.stringify({
             'avatar': fieldAvatarValue,
         })
-    });
+    })
+    .finally(() => renderLoading(false, btnSaveAvatar));
 
   closePopup(popupAvatar);
   formAvatar.reset();
@@ -95,6 +100,15 @@ function closePopupByBtn() {
     popupList.forEach((popup) => {
         popup.querySelector('.popup__close-btn').addEventListener('click', () => closePopup(popup));
     });
+}
+
+function renderLoading(isLoading, btn) {
+
+  if (isLoading) {
+    btn.textContent = 'Сохранение...';
+  } else {
+    btn.textContent = 'Сохранение';
+  }
 }
 
 export {
