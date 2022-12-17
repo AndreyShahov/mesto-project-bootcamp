@@ -13,7 +13,13 @@ import { getInitialCards, updateProfileInfo } from './api.js';
 import { addCard, addStrangeCard } from './card.js';
 import { enableValidation } from './validate.js';
 
-btnEdit.addEventListener('click', () => openPopup(popupEdit));
+export let userId;
+
+btnEdit.addEventListener('click', () => {
+  openPopup(popupEdit);
+  authorEdit.value = name.textContent;
+  sublineEdit.value = name.textContent;
+});
 btnAdd.addEventListener('click', () => openPopup(popupAdd));
 btnAvatar.addEventListener('click', () => openPopup(popupAvatar));
 
@@ -26,8 +32,8 @@ closePopupByBtn();
 
 enableValidation(settings);
 
-updateProfileInfo(config)
-  .then(data => {
+Promise.all([updateProfileInfo(config), getInitialCards(config)])
+  .then(([data, items]) => {
     name.textContent = data.name;
     authorEdit.value = data.name;
 
@@ -35,14 +41,12 @@ updateProfileInfo(config)
     sublineEdit.value = data.about;
 
     avatar.src = data.avatar;
-  })
-  .catch(err => console.log(err));
 
-getInitialCards(config)
-  .then(items => {
+    userId = data['_id'];
+
     items.forEach(item => {
 
-      if (item['owner']['_id'] === "135e568bbf5b7f0594e3ab64") {
+      if (item['owner']['_id'] === userId) {
         addCard(item, elements);
       } else {
         addStrangeCard(item, elements);
@@ -50,7 +54,4 @@ getInitialCards(config)
     })
   })
   .catch(err => console.log(err));
-
-
-
 

@@ -1,9 +1,9 @@
-import { imageBig, popupCaption, config } from "./data.js";
+import { imageBig, popupCaption, config, elementTemplate } from "./data.js";
 import { deleteCard, addLike, deleteLike } from "./api.js";
 import { OpenImagePopup } from "./modal.js";
+import { userId } from "./index.js";
 
 function createCard(item) {
-  const elementTemplate = document.querySelector('#element').content.querySelector('.element');
   const elementNew = elementTemplate.cloneNode(true);
   const trashBtn = elementNew.querySelector('.element__trash-btn');
   const likeBtn = elementNew.querySelector('.element__like-btn');
@@ -15,11 +15,14 @@ function createCard(item) {
   elementNew.querySelector('.element__title').textContent = item.name;
 
   trashBtn.addEventListener('click', () => {
-    trashBtn.closest('.element').remove();
     deleteCard(item, config)
+    .then(() => {
+      trashBtn.closest('.element').remove();
+    })
+    .catch(err => console.log(err));
   });
 
-  if (item['likes'].find(item => item['_id'] === "135e568bbf5b7f0594e3ab64")) {
+  if (item['likes'].find(item => item['_id'] === userId)) {
     likeBtn.classList.add('element__like-btn_active');
   }
 

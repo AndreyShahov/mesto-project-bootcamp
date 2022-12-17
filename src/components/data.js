@@ -23,6 +23,8 @@ const btnSaveAvatar = popupAvatar.querySelector('.popup__save-btn');
 const name = document.querySelector('.profile__author');
 const status = document.querySelector('.profile__author-subline');
 const avatar = document.querySelector('.profile__avatar');
+const elementTemplate = document.querySelector('#element').content.querySelector('.element');
+
 
 const config = {
   baseUrl: 'https://nomoreparties.co/v1/wbf-cohort-3',
@@ -48,5 +50,5 @@ export {
   btnEdit, btnAdd, popupEdit, popupImage, popupAdd, elements, imageBig, formEditCard,
   formAddCard, authorEdit, sublineEdit, authorAdd, sublineAdd, popupList, btnSaveAdd, errorMessages,
   popupCaption, name, status, avatar, btnAvatar, popupAvatar, formAvatarInput, btnSaveAvatar,
-  formAvatar, btnSaveEdit, settings, config
+  formAvatar, btnSaveEdit, settings, config, elementTemplate
 };

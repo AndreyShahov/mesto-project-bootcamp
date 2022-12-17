@@ -18,7 +18,6 @@ export const deleteCard = (item, config) => {
     headers: config.headers
   })
     .then(checkResponse)
-    .catch(err => console.log(err));
 }
 
 export const postNewCard = (nameCardValue, linkCardValue, config) => {

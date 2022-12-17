@@ -19,8 +19,8 @@ function handleAddCardFormSubmit(evt) {
     .then(item => {
       addNewCard(item, elements);
     })
-    .catch(err => console.log(err))
-    .finally(() => renderLoading(false, btnSaveAdd));
+    .finally(() => renderLoading(false, btnSaveAdd))
+    .catch(err => console.log(err));
 
   closePopup(popupAdd);
   formAddCard.reset();
@@ -37,8 +37,8 @@ function handleProfileFormSubmit(evt) {
 
   renderLoading(true, btnSaveEdit);
   updateUser(nameValue, aboutValue, config)
-    .catch(err => console.log(err))
-    .finally(() => renderLoading(false, btnSaveEdit));
+    .finally(() => renderLoading(false, btnSaveEdit))
+    .catch(err => console.log(err));
 
   closePopup(popupEdit);
 }
@@ -50,8 +50,8 @@ function handleAvatarFormSubmit(evt) {
 
   renderLoading(true, btnSaveAvatar);
   updateAvatar(fieldAvatarValue, config)
-    .catch(err => console.log(err))
-    .finally(() => renderLoading(false, btnSaveAvatar));
+    .finally(() => renderLoading(false, btnSaveAvatar))
+    .catch(err => console.log(err));
 
   closePopup(popupAvatar);
   formAvatar.reset();
