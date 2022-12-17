@@ -27,18 +27,20 @@ function createCard(item) {
   }
 
   likeBtn.addEventListener('click', () => {
-    likeBtn.classList.toggle('element__like-btn_active');
 
-    if (likeBtn.classList.contains('element__like-btn_active')) {
+
+    if (!likeBtn.classList.contains('element__like-btn_active')) {
       addLike(item, config)
         .then((item) => {
           counterLikes.textContent = item.likes.length;
+          likeBtn.classList.toggle('element__like-btn_active');
         })
         .catch(err => console.log(err));
     } else {
       deleteLike(item, config)
         .then((item) => {
           counterLikes.textContent = item.likes.length;
+          likeBtn.classList.toggle('element__like-btn_active');
         })
         .catch(err => console.log(err));
     }
