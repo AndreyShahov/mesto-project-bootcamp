@@ -1,4 +1,4 @@
-import { errorMessages } from "./data.js";
+import { errorMessages, settings } from "./data.js";
 
 function isValid(input) {
     input.setCustomValidity('');
@@ -31,14 +31,14 @@ function isInputValid(input) {
         currentSpan.textContent = input.validationMessage;
     }
 }
-export function setButtonDesable(button, state) {
+export function setButtonDesable(button, state, settings) {
 
     if (state) {
         button.setAttribute('disabled', true);
-        button.classList.add('popup__save-btn_disabled');
+        button.classList.add(settings.btnStateDisabled);
     } else {
         button.removeAttribute('disabled');
-        button.classList.remove('popup__save-btn_disabled');
+        button.classList.remove(settings.btnStateDisabled);
     }
 }
 
@@ -50,15 +50,15 @@ const hasInvalidInput = (inputList) => {
 
 function toggleButtonState(inputList, buttonElement) {
     if (hasInvalidInput(inputList)) {
-        setButtonDesable(buttonElement, true);
+        setButtonDesable(buttonElement, true, settings);
     } else {
-        setButtonDesable(buttonElement, false);
+        setButtonDesable(buttonElement, false, settings);
     }
 }
 
-function setEventListeners(formElement) {
-    const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-    const buttonElement = formElement.querySelector('.popup__save-btn');
+function setEventListeners(formElement, settings) {
+    const inputList = Array.from(formElement.querySelectorAll(settings.input));
+    const buttonElement = formElement.querySelector(settings.saveBtn);
 
     toggleButtonState(inputList, buttonElement);
 
@@ -70,4 +70,6 @@ function setEventListeners(formElement) {
     });
 }
 
-Array.from(document.forms).forEach(form => setEventListeners(form));
+ export function enableValidation(settings) {
+  Array.from(document.forms).forEach(form => setEventListeners(form, settings));
+}

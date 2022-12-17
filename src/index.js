@@ -1,7 +1,7 @@
 import './index.css';
 import {
   btnEdit, btnAdd, popupEdit, popupAdd, formEditCard, formAddCard, authorEdit,
-  sublineEdit, name, about, avatar, btnAvatar, popupAvatar, formAvatar, elements
+  sublineEdit, name, about, avatar, btnAvatar, popupAvatar, formAvatar, elements, settings
 } from './components/data.js';
 import {
   handleAddCardFormSubmit, handleProfileFormSubmit, closePopupByOverlay, closePopupByBtn,
@@ -10,6 +10,7 @@ import {
 import { openPopup } from './components/utils.js';
 import { getInitialCards, updateProfileInfo } from './components/api';
 import { addCard, addStrangeCard } from './components/card';
+import { enableValidation } from './components/validate';
 
 btnEdit.addEventListener('click', () => openPopup(popupEdit));
 btnAdd.addEventListener('click', () => openPopup(popupAdd));
@@ -21,6 +22,8 @@ formAvatar.addEventListener('submit', handleAvatarFormSubmit);
 
 closePopupByOverlay();
 closePopupByBtn();
+
+enableValidation(settings);
 
 updateProfileInfo()
   .then(data => {

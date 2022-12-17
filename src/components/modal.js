@@ -1,7 +1,7 @@
 import {
   authorAdd, sublineAdd, elements, popupAdd, formAddCard, btnSaveAdd, popupList, popupEdit,
   authorEdit, sublineEdit, name, about, avatar, formAvatarInput, btnSaveAvatar, popupAvatar,
-  formAvatar, btnSaveEdit, popupImage
+  formAvatar, btnSaveEdit, popupImage, settings
 } from "./data.js";
 import { setButtonDesable } from "./validate.js";
 import { openPopup, closePopup } from "./utils.js";
@@ -24,7 +24,7 @@ function handleAddCardFormSubmit(evt) {
 
   closePopup(popupAdd);
   formAddCard.reset();
-  setButtonDesable(btnSaveAdd, true);
+  setButtonDesable(btnSaveAdd, true, settings);
 }
 
 function handleProfileFormSubmit(evt) {
@@ -55,7 +55,7 @@ function handleAvatarFormSubmit(evt) {
 
   closePopup(popupAvatar);
   formAvatar.reset();
-  setButtonDesable(btnSaveAvatar, true);
+  setButtonDesable(btnSaveAvatar, true, settings);
 }
 
 function handleEscape(evt) {

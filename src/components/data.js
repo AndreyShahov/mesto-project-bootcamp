@@ -30,9 +30,15 @@ const errorMessages = {
   'wrongUrl': 'Введите адрес.'
 }
 
+const settings = {
+  btnStateDisabled: 'popup__save-btn_disabled',
+  input: '.popup__input',
+  saveBtn: '.popup__save-btn'
+  };
+
 export {
   btnEdit, btnAdd, popupEdit, popupImage, popupAdd, elements, bigImage, formEditCard,
   formAddCard, authorEdit, sublineEdit, authorAdd, sublineAdd, popupList, btnSaveAdd, errorMessages,
   popupCaption, name, about, avatar, btnAvatar, popupAvatar, formAvatarInput, btnSaveAvatar,
-  formAvatar, btnSaveEdit
+  formAvatar, btnSaveEdit, settings
 };
