@@ -18,7 +18,7 @@ export let userId;
 btnEdit.addEventListener('click', () => {
   openPopup(popupEdit);
   authorEdit.value = name.textContent;
-  sublineEdit.value = name.textContent;
+  sublineEdit.value = status.textContent;
 });
 btnAdd.addEventListener('click', () => openPopup(popupAdd));
 btnAvatar.addEventListener('click', () => openPopup(popupAvatar));
